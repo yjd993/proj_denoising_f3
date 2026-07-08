@@ -1,0 +1,7 @@
+h5py
+laspy
+lazrs
+numpy
+plotly
+pyproj
+scipy

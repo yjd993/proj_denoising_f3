@@ -1,0 +1,150 @@
+﻿{
+  "stage_name": "stage6f_ch1_boresight_lever_diagnostic",
+  "method_registry": [
+    {
+      "method_id": "DG_ALS_001",
+      "method_name": "GNSS/IMU assisted airborne LiDAR direct georeferencing model",
+      "source_type": "peer_reviewed_journal",
+      "source_reference": "Skaloud & Lichti, ISPRS Journal of Photogrammetry and Remote Sensing, 2006",
+      "used_for_delete_or_transform": "yes, diagnostic transform only"
+    },
+    {
+      "method_id": "PROJECT_DIAGNOSTIC_PARAMETER",
+      "method_name": "Stage 6F body/FRD boresight and lever-arm diagnostic search",
+      "source_type": "project_diagnostic_parameter",
+      "source_reference": "Exact-time comparison with existing L3 00111; not final production calibration",
+      "used_for_delete_or_transform": "yes, diagnostic transform only"
+    },
+    {
+      "method_id": "EXACT_TIME_MATCH_QC",
+      "method_name": "Reference L3 exact GNSS time validation",
+      "source_type": "project_qc_rule",
+      "source_reference": "Existing L3 reference GNSS_SEC and L1 GNSS_SEC_CH1 + 18",
+      "used_for_delete_or_transform": "no, QC only"
+    }
+  ],
+  "inputs": {
+    "reference_l3": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L3_DATA\\L2_cap_00111_20260510190957.h5",
+    "l1_sample": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00111_20260510190957.h5",
+    "pos_source": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\0510f3_processed.mat",
+    "calib_coeffs": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\untitled\\calib_coeffs.mat"
+  },
+  "fixed_parameters": {
+    "zero_offset_m": 20.49460272584239,
+    "angle_direction": "360-angle",
+    "angle_offset_deg": 1.0,
+    "roll_sign": 1,
+    "pitch_sign": 1,
+    "heading_sign": -1,
+    "heading_convention": "heading+180",
+    "rotation_order": "YXZ",
+    "rotation_transpose": true
+  },
+  "search": {
+    "max_matched_points": 100000,
+    "search_points": 5000,
+    "full_eval_points": 100000,
+    "top_final_eval_count": 100,
+    "local_top_candidates": 20,
+    "lever_limit_m": 3.0,
+    "coarse_boresight_grid_deg": [
+      -2.0,
+      -1.0,
+      -0.5,
+      0.0,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "local_boresight_delta_deg": [
+      -0.5,
+      -0.25,
+      0.0,
+      0.25,
+      0.5
+    ],
+    "coarse_candidate_count": 686,
+    "local_candidate_count": 1530
+  },
+  "baseline_metrics": {
+    "candidate_stage": "baseline",
+    "boresight_roll_deg": 0.0,
+    "boresight_pitch_deg": 0.0,
+    "boresight_yaw_deg": 0.0,
+    "boresight_abs_max_deg": 0.0,
+    "lever_x_m": 0.0,
+    "lever_y_m": 0.0,
+    "lever_z_m": 0.0,
+    "lever_norm_m": 0.0,
+    "sample_points_used": 100000,
+    "north_rmse_m": 1.547590700189187,
+    "east_rmse_m": 0.8243126544965003,
+    "down_rmse_m": 0.4766572576871143,
+    "horizontal_rmse_m": 1.7534332971844444,
+    "vector_rmse_m": 1.8170664459454733,
+    "north_median_m": -1.5006186931180259,
+    "east_median_m": 0.6625962236673222,
+    "down_median_m": 0.3428576246215087,
+    "north_mad_m": 0.4711461777454824,
+    "east_mad_m": 0.5289534713546158,
+    "down_mad_m": 0.26102352825809305,
+    "north_p90_abs_m": 2.0981892538912525,
+    "east_p90_abs_m": 1.3069584651536184,
+    "down_p90_abs_m": 0.657371249079975,
+    "horizontal_p90_m": 2.297168439551215,
+    "bias_removed_vector_rmse_m": 0.8082996156737804,
+    "bias_removed_horizontal_rmse_m": 0.723937779748837
+  },
+  "best_candidate": {
+    "candidate_stage": "local_ls_full_eval",
+    "boresight_roll_deg": 0.0,
+    "boresight_pitch_deg": -1.25,
+    "boresight_yaw_deg": 0.5,
+    "boresight_abs_max_deg": 1.25,
+    "lever_x_m": 0.5297373033228238,
+    "lever_y_m": 0.072071373831219,
+    "lever_z_m": -0.12718571792232003,
+    "lever_norm_m": 0.5495380790273525,
+    "sample_points_used": 100000,
+    "north_rmse_m": 0.46355400947330566,
+    "east_rmse_m": 0.5251822152173006,
+    "down_rmse_m": 0.23564602870342718,
+    "horizontal_rmse_m": 0.7004988785710684,
+    "vector_rmse_m": 0.7390722087340459,
+    "north_median_m": 0.023996050536227553,
+    "east_median_m": 0.04637028479209793,
+    "down_median_m": 0.00018974052282061393,
+    "north_mad_m": 0.4528996339525979,
+    "east_mad_m": 0.5132264004532221,
+    "down_mad_m": 0.024456733891113913,
+    "north_p90_abs_m": 0.6448549946076042,
+    "east_p90_abs_m": 0.7419387312157444,
+    "down_p90_abs_m": 0.06068772566109289,
+    "horizontal_p90_m": 0.785284020391026,
+    "bias_removed_vector_rmse_m": 0.7409031839493503,
+    "bias_removed_horizontal_rmse_m": 0.7024295815796165,
+    "rank": 1
+  },
+  "stage6e_bias_vector_rmse_m": 0.8082996156737806,
+  "improvement_vs_stage6d_fixed_pct": 59.32607690912013,
+  "gate": {
+    "conclusion": "基本合理但有风险",
+    "reason": "Stage 6F 参数幅度可接受，但相对 Stage 6E 改善不足 10%；是否进入 6G 需要人工判断。",
+    "recommend_stage6g": false,
+    "improvement_vs_stage6e_bias_pct": 8.564572541832561,
+    "criteria": {
+      "min_improvement_vs_stage6e_bias_pct": 10.0,
+      "max_lever_norm_m": 3.0,
+      "max_boresight_abs_deg": 2.0
+    }
+  },
+  "outputs": {
+    "coarse_candidates_csv": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6f_boresight_lever_diagnostic\\coarse_candidates.csv",
+    "local_candidates_csv": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6f_boresight_lever_diagnostic\\local_candidates.csv",
+    "top_candidates_csv": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6f_boresight_lever_diagnostic\\top_candidates_full_eval.csv",
+    "scan_bins_csv": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6f_boresight_lever_diagnostic\\scan_angle_bin_residuals.csv",
+    "best_candidate_json": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6f_boresight_lever_diagnostic\\best_candidate.json",
+    "report_json": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6f_ch1_boresight_lever_diagnostic_report.json",
+    "report_md": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6f_ch1_boresight_lever_diagnostic_report.md"
+  }
+}

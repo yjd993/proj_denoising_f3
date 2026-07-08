@@ -1,0 +1,106 @@
+﻿{
+  "stage_name": "stage3_georeference_ch1",
+  "input_l2_pos": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\intermediate\\l2_pos_matched\\L2P_CH1_cap_00113_20260510191003_time_repaired.h5",
+  "output_l3": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\intermediate\\l3_georef\\L3_CH1_cap_00113_20260510191003_time_repaired.h5",
+  "preview_html": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\preview\\stage3_ch1_georef_L2P_CH1_cap_00113_20260510191003_time_repaired.html",
+  "reference_l3": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L3_DATA\\L2_cap_00111_20260510190957.h5",
+  "processed_channel": "CH1",
+  "point_count_before": 2332645,
+  "point_count_after": 1547274,
+  "filtered_count": 785371,
+  "range_min_for_georef_m": 30.0,
+  "gps_time": {
+    "count": 1547274,
+    "minimum": 40217.90377414519,
+    "maximum": 40220.90557224281,
+    "mean": 40219.401906777726
+  },
+  "north_offset_m": {
+    "count": 1547274,
+    "minimum": -32.427519671620274,
+    "maximum": 69.3230014110385,
+    "mean": 8.233483243924207
+  },
+  "east_offset_m": {
+    "count": 1547274,
+    "minimum": -92.55357720848743,
+    "maximum": 40.89543052158358,
+    "mean": -11.073622290795742
+  },
+  "down_offset_m": {
+    "count": 1547274,
+    "minimum": 28.53155142627164,
+    "maximum": 267.3294639802156,
+    "mean": 113.20711139762238
+  },
+  "easting_m": {
+    "count": 1547274,
+    "minimum": 394524.5878555527,
+    "maximum": 394658.13328811474,
+    "mean": 394606.34038093354
+  },
+  "northing_m": {
+    "count": 1547274,
+    "minimum": 3417442.2305753804,
+    "maximum": 3417545.3225256964,
+    "mean": 3417483.7552115996
+  },
+  "height_m": {
+    "count": 1547274,
+    "minimum": -139.36474754841518,
+    "maximum": 99.45016500552879,
+    "mean": 14.769138165641683
+  },
+  "lon": {
+    "count": 1547274,
+    "minimum": 121.89649658809411,
+    "maximum": 121.8978896448527,
+    "mean": 121.89735166526614
+  },
+  "lat": {
+    "count": 1547274,
+    "minimum": 30.885580186677565,
+    "maximum": 30.88651200100426,
+    "mean": 30.88595616807984
+  },
+  "reference_point_x": {
+    "count": 1490688,
+    "minimum": 3417456.3847683542,
+    "maximum": 3417500.64359792,
+    "mean": 3417477.91873351
+  },
+  "reference_point_y": {
+    "count": 1490688,
+    "minimum": 394583.82323862,
+    "maximum": 394643.4703634529,
+    "mean": 394612.9036911161
+  },
+  "reference_point_z": {
+    "count": 1490688,
+    "minimum": 14.345937014235716,
+    "maximum": 19.451964598407585,
+    "mean": 15.136239097425765
+  },
+  "reference_height_bias_m": 15.607716431800448,
+  "height_qc_min_m": 14.345937014235716,
+  "height_qc_max_m": 19.451964598407585,
+  "height_qc_inlier_count": 1487503,
+  "height_qc_inlier_rate": 0.9613701257825052,
+  "height_below_qc_count": 40257,
+  "height_above_qc_count": 19514,
+  "qc_preview_html": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\preview\\stage3_ch1_georef_height_qc_preview.html",
+  "crs": "EPSG:32651",
+  "utm_zone": "51N/51R",
+  "calibration_status": "engineering_transform_reference_aligned; boresight_lever_arm_pending",
+  "empty_channel_placeholders": [
+    "CH2",
+    "CH3",
+    "CH4"
+  ],
+  "known_warnings": [
+    "Height QC inlier rate is 96.14%; raw preview contains vertical outliers.",
+    "Applied reference height bias 15.608 m; boresight/lever-arm/range calibration still pending."
+  ],
+  "conclusion": "基本合理但有风险",
+  "recommendation": "建议人工查看地理点云预览和标定警告；如可接受，再进入阶段 4。"
+}

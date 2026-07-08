@@ -1,0 +1,114 @@
+﻿{
+  "stage_name": "stage6d_ch1_rotation_zero_diagnostic",
+  "method_registry": [
+    {
+      "method_id": "DG_ALS_001",
+      "method_name": "GNSS/IMU assisted airborne LiDAR direct georeferencing model",
+      "source_type": "peer_reviewed_journal",
+      "source_reference": "Skaloud & Lichti, ISPRS Journal of Photogrammetry and Remote Sensing, 2006",
+      "used_for_delete_or_transform": "yes, diagnostic transform only"
+    },
+    {
+      "method_id": "PROJECT_DIAGNOSTIC_PARAMETER",
+      "method_name": "Heading/roll/pitch convention, scan-angle direction/zero, and range-zero diagnostic grid",
+      "source_type": "project_diagnostic_parameter",
+      "source_reference": "Exact-time comparison with existing L3 00111; not final production calibration",
+      "used_for_delete_or_transform": "yes, diagnostic transform only"
+    },
+    {
+      "method_id": "EXACT_TIME_MATCH_QC",
+      "method_name": "Reference L3 exact GNSS time validation",
+      "source_type": "project_qc_rule",
+      "source_reference": "Existing L3 reference GNSS_SEC and L1 GNSS_SEC_CH1 + 18",
+      "used_for_delete_or_transform": "no, QC only"
+    }
+  ],
+  "inputs": {
+    "reference_l3": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L3_DATA\\L2_cap_00111_20260510190957.h5",
+    "l1_sample": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00111_20260510190957.h5",
+    "pos_source": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\0510f3_processed.mat",
+    "calib_coeffs": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\untitled\\calib_coeffs.mat"
+  },
+  "assumptions": {
+    "sensor_coordinates": "f_body_frame_xyz",
+    "boresight_deg": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "lever_arm_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "match_return_strategy": "far_return_refnorm",
+    "min_far_range_m": 30.0,
+    "lidar_time_offset_sec": 18.0
+  },
+  "search": {
+    "max_matched_points": 100000,
+    "search_points": 5000,
+    "full_eval_points": 100000,
+    "candidate_count": 23040,
+    "top_final_eval_count": 100,
+    "angle_offsets_deg": [
+      -5.0,
+      -2.0,
+      -1.0,
+      -0.5,
+      0.0,
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "zero_modes": [
+      "estimated",
+      "fixed_stage6",
+      "fixed_calib",
+      "none"
+    ]
+  },
+  "best_candidate": {
+    "zero_mode": "estimated",
+    "zero_offset_m": 20.49460272584239,
+    "angle_direction": "360-angle",
+    "angle_offset_deg": 1.0,
+    "roll_sign": 1,
+    "pitch_sign": 1,
+    "heading_sign": -1,
+    "heading_convention": "heading+180",
+    "rotation_order": "YXZ",
+    "rotation_transpose": true,
+    "north_rmse_m": 1.5475907001891869,
+    "east_rmse_m": 0.8243126544965006,
+    "down_rmse_m": 0.47665725768711503,
+    "horizontal_rmse_m": 1.7534332971844444,
+    "vector_rmse_m": 1.8170664459454733,
+    "north_median_m": -1.5006186931180263,
+    "east_median_m": 0.6625962236673231,
+    "down_median_m": 0.3428576246215087,
+    "north_mad_m": 0.4711461777454833,
+    "east_mad_m": 0.528953471354614,
+    "down_mad_m": 0.26102352825810726,
+    "north_p90_abs_m": 2.098189253891255,
+    "east_p90_abs_m": 1.3069584651536184,
+    "down_p90_abs_m": 0.6573712490799765,
+    "horizontal_p90_m": 2.2971684395512173,
+    "bias_removed_vector_rmse_m": 0.8082996156737805,
+    "bias_removed_horizontal_rmse_m": 0.7239377797488371,
+    "rank": 1
+  },
+  "gate": {
+    "conclusion": "基本合理但有风险",
+    "reason": "候选接近参考 L3，但仍存在米级水平或扫描角相关残差。",
+    "recommendation": "人工检查报告后再决定是否进入 Stage 6E 小样本重算；本阶段不允许直接全量应用候选。"
+  },
+  "outputs": {
+    "candidate_summary": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6d_rotation_zero_diagnostic\\candidate_summary_search_sample.csv",
+    "top_candidates": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6d_rotation_zero_diagnostic\\top_candidates_full_eval.csv",
+    "best_candidate_json": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6d_rotation_zero_diagnostic\\best_candidate.json",
+    "report_json": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6d_ch1_rotation_zero_diagnostic_report.json",
+    "report_md": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6d_ch1_rotation_zero_diagnostic_report.md"
+  }
+}

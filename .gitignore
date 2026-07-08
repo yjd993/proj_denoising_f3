@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Generated outputs
+outputs/**/*.html
+outputs/**/*.ply
+outputs/**/*.las
+outputs/**/*.laz
+
+# Large mission data
+0510_f3/L1-TIME_ANGE_DIST_DATA/
+0510_f3/L3_DATA/
+0510_f3/L4_DATA/
+0510_f3/POS_DATA/
+0510_f3/*.mat
+
+# MATLAB generated files
+*.asv
+*.m~
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,133 @@
+﻿{
+  "stage_name": "stage35_empirical_calibration",
+  "sample_input_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00111_20260510190957.h5",
+  "reference_l3": "0510_f3\\L3_DATA\\L2_cap_00111_20260510190957.h5",
+  "calibration_model_path": "metadata\\stage_reports\\stage35_empirical_model.json",
+  "sample_output_l3_calibrated": "intermediate\\l3_georef\\L3C_CH1_cap_00111_20260510190957.h5",
+  "sample_preview_html": "outputs\\preview\\stage35_ch1_calibrated_sample_preview.html",
+  "continuous_output_l3_merged": "intermediate\\l3_georef\\L3C_CH1_continuous_cap_00111_00115.h5",
+  "continuous_preview_html": "outputs\\preview\\stage35_ch1_calibrated_continuous_preview.html",
+  "model": {
+    "dx_m": -0.6224642426241189,
+    "dy_m": 0.9507395103573799,
+    "dz_m": -0.001392443057170567,
+    "z_scale": 1.4001225257058714,
+    "rotation_deg": -0.04690311200641872,
+    "apply_z_scale": false,
+    "apply_rotation": false,
+    "reference_easting_median": 394612.07383078535,
+    "reference_northing_median": 3417477.0118265394,
+    "reference_height_median": 15.083041374339643,
+    "source_easting_median": 394612.69629502797,
+    "source_northing_median": 3417476.061087029,
+    "source_height_median": 15.084433817396814
+  },
+  "file_summaries": [
+    {
+      "input_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00111_20260510190957.h5",
+      "output_l3_calibrated": "intermediate\\l3_georef\\L3C_CH1_cap_00111_20260510190957.h5",
+      "point_count_before": 1540743,
+      "point_count_after": 1537517,
+      "skipped": false,
+      "skip_reason": "",
+      "gps_time_min": 40211.900355924,
+      "gps_time_max": 40214.902070032,
+      "easting_mean": 394612.44899846654,
+      "northing_mean": 3417477.836807181,
+      "height_median": 15.082078938487768,
+      "height_min": -15.43300949498537,
+      "height_max": 47.93217225122311
+    },
+    {
+      "input_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00112_20260510191000.h5",
+      "output_l3_calibrated": "intermediate\\l3_georef\\L3C_CH1_cap_00112_20260510191000.h5",
+      "point_count_before": 1547440,
+      "point_count_after": 1543622,
+      "skipped": false,
+      "skip_reason": "",
+      "gps_time_min": 40214.902072032,
+      "gps_time_max": 40217.903772128,
+      "easting_mean": 394607.9969241534,
+      "northing_mean": 3417480.4350171215,
+      "height_median": 15.08253351039859,
+      "height_min": -15.434819382752607,
+      "height_max": 47.95288328522845
+    },
+    {
+      "input_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00113_20260510191003.h5",
+      "output_l3_calibrated": "intermediate\\l3_georef\\L3C_CH1_cap_00113_20260510191003.h5",
+      "point_count_before": 2332645,
+      "point_count_after": 0,
+      "skipped": true,
+      "skip_reason": "POS match success rate below 95% (0.10%); likely invalid L1 GNSS time.",
+      "gps_time_min": null,
+      "gps_time_max": null,
+      "easting_mean": null,
+      "northing_mean": null,
+      "height_median": null,
+      "height_min": null,
+      "height_max": null
+    },
+    {
+      "input_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00114_20260510191006.h5",
+      "output_l3_calibrated": "intermediate\\l3_georef\\L3C_CH1_cap_00114_20260510191006.h5",
+      "point_count_before": 1542615,
+      "point_count_after": 1539247,
+      "skipped": false,
+      "skip_reason": "",
+      "gps_time_min": 40220.90557426,
+      "gps_time_max": 40223.906686396,
+      "easting_mean": 394605.74924929254,
+      "northing_mean": 3417488.7315917197,
+      "height_median": 15.082415053193671,
+      "height_min": -15.434378963047337,
+      "height_max": 47.83191510247249
+    },
+    {
+      "input_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00115_20260510191009.h5",
+      "output_l3_calibrated": "intermediate\\l3_georef\\L3C_CH1_cap_00115_20260510191009.h5",
+      "point_count_before": 1541046,
+      "point_count_after": 1537642,
+      "skipped": false,
+      "skip_reason": "",
+      "gps_time_min": 40223.906688396,
+      "gps_time_max": 40226.908654552,
+      "easting_mean": 394606.49971076916,
+      "northing_mean": 3417492.696164428,
+      "height_median": 15.082586327803973,
+      "height_min": -15.42822375922028,
+      "height_max": 47.94306302016444
+    }
+  ],
+  "merged_point_count": 6158028,
+  "merged_gps_time": {
+    "count": 6158028,
+    "minimum": 40211.900355924,
+    "maximum": 40226.908654552,
+    "mean": 40219.40309108004
+  },
+  "merged_easting": {
+    "count": 6158028,
+    "minimum": 394564.4545115932,
+    "maximum": 394650.49732077605,
+    "mean": 394608.1728302995
+  },
+  "merged_northing": {
+    "count": 6158028,
+    "minimum": 3417451.809301061,
+    "maximum": 3417527.852286401,
+    "mean": 3417484.9216710743
+  },
+  "merged_height": {
+    "count": 6158028,
+    "minimum": -15.434819382752607,
+    "maximum": 47.95288328522845,
+    "mean": 14.758909263948569
+  },
+  "known_warnings": [
+    "Stage 3.5 is empirical alignment against the existing L3 sample; it is not a substitute for final boresight/lever-arm calibration.",
+    "L1_cap_00113_20260510191003.h5: skipped. POS match success rate below 95% (0.10%); likely invalid L1 GNSS time."
+  ],
+  "conclusion": "基本合理但有风险",
+  "recommendation": "经验校正后的可用文件已生成，但存在被跳过的时间异常文件；建议确认后再继续阶段 4/5。"
+}

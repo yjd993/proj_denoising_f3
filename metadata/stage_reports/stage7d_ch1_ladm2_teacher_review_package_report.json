@@ -1,0 +1,279 @@
+﻿{
+  "stage_name": "stage7d_ch1_ladm2_teacher_review_package",
+  "method_registry": [
+    {
+      "method_id": "CAO2017_LADM2_4_7_4_14",
+      "method_name": "LADM-II scan geometry based on Cao 2017 section 4.4.2",
+      "source_type": "doctoral_thesis_and_project_diagnostic",
+      "source_reference": "Stage 6I/6K selected and validated the LADM-II geometry candidate",
+      "used_for_delete_or_transform": "yes, Stage 7A candidate transform"
+    },
+    {
+      "method_id": "STAGE7A_CANDIDATE_BATCH",
+      "method_name": "Limited CH1 LADM-II candidate batch",
+      "source_type": "project_output",
+      "source_reference": "C:\\proj_denoising_f3_2.0, sequences 00050-00150",
+      "used_for_delete_or_transform": "yes, candidate H5/LAZ/TXT output"
+    },
+    {
+      "method_id": "STAGE7B_7C_QC",
+      "method_name": "Automatic continuity QC plus focused seam audit",
+      "source_type": "project_qc_rule",
+      "source_reference": "Stage 7B automatic QC and Stage 7C focused boundary audit",
+      "used_for_delete_or_transform": "no, QC only"
+    },
+    {
+      "method_id": "MANUAL_CLOUDCOMPARE_REVIEW",
+      "method_name": "Manual CloudCompare review for 00144-00145 focused boundary",
+      "source_type": "manual_visual_qc",
+      "source_reference": "User visual inspection: no obvious horizontal offset, vertical step, strip break, or distortion",
+      "used_for_delete_or_transform": "no, release decision evidence"
+    }
+  ],
+  "inputs": {
+    "output_root": "C:\\proj_denoising_f3_2.0",
+    "stage7a_manifest": "C:\\proj_denoising_f3_2.0\\manifest\\stage7a_ch1_ladm2_00050_00150_manifest.csv",
+    "reports": {
+      "stage6i": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6i_ch1_ladm2_scan_geometry_diagnostic_report.json",
+      "stage6k": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6k_ch1_ladm2_full_00111_export_report.json",
+      "stage6n": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6n_ch1_ladm2_continuous_qc_report.json",
+      "stage7a": "C:\\proj_denoising_f3_2.0\\reports\\stage7a_ch1_ladm2_candidate_batch_report.json",
+      "stage7b": "C:\\proj_denoising_f3_2.0\\reports\\stage7b_ch1_ladm2_candidate_qc_report.json",
+      "stage7c": "C:\\proj_denoising_f3_2.0\\reports\\stage7c_ch1_ladm2_focused_seam_audit_report.json"
+    },
+    "manual_cloudcompare_144_145_pass": true,
+    "manual_cloudcompare_144_145_note": "CloudCompare focused review found no obvious horizontal offset, vertical step, strip break, or distortion."
+  },
+  "aggregate": {
+    "display_candidate_files": 95,
+    "excluded_bad_time_files": 6,
+    "total_h5_points": 217000065,
+    "total_laz_points": 179717052,
+    "total_txt_points": 179717052,
+    "all_release_outputs_exist": true
+  },
+  "gate": {
+    "conclusion": "DISPLAY_CANDIDATE_APPROVED_WITH_NOTES",
+    "ready_for_teacher_review": true,
+    "reason": "95 Stage 7A files are approved as display candidates; 6 bad-time files remain excluded; 00144-00145 time gap is documented as a note."
+  },
+  "qc_summary": [
+    {
+      "section": "geometry_model",
+      "metric": "Stage 6I LADM-II improvement vs Stage 6F vector RMSE",
+      "value": 61.45909157595535,
+      "unit": "%",
+      "decision": "supports LADM-II replacement"
+    },
+    {
+      "section": "geometry_model",
+      "metric": "Stage 6I LADM-II improvement vs Stage 6F horizontal RMSE",
+      "value": 77.24619831608926,
+      "unit": "%",
+      "decision": "supports LADM-II replacement"
+    },
+    {
+      "section": "exact_time_reference",
+      "metric": "Stage 6K exact-time gate",
+      "value": "合理",
+      "unit": "",
+      "decision": "00111 full-point LADM-II diagnostic export completed and exact-time QC still matches Stage 6J accuracy."
+    },
+    {
+      "section": "continuous_segment",
+      "metric": "Stage 6N 00114-00118 seam warnings",
+      "value": 0,
+      "unit": "count",
+      "decision": "PASS"
+    },
+    {
+      "section": "stage7a_output",
+      "metric": "Processed display candidate files",
+      "value": 95,
+      "unit": "files",
+      "decision": "95 Stage 7A outputs are display candidates"
+    },
+    {
+      "section": "stage7a_output",
+      "metric": "Skipped bad-time files",
+      "value": 6,
+      "unit": "files",
+      "decision": "excluded and documented"
+    },
+    {
+      "section": "stage7a_output",
+      "metric": "Total H5 points",
+      "value": 217000065,
+      "unit": "points",
+      "decision": "full candidate H5 outputs exist"
+    },
+    {
+      "section": "stage7b_schema_pos",
+      "metric": "Files missing full-chain H5 fields",
+      "value": 0,
+      "unit": "files",
+      "decision": "0 means H5 chain is complete"
+    },
+    {
+      "section": "stage7b_schema_pos",
+      "metric": "Minimum POS success rate",
+      "value": 1.0,
+      "unit": "ratio",
+      "decision": "POS matching is complete for processed files"
+    },
+    {
+      "section": "stage7b_schema_pos",
+      "metric": "Max POS interpolation dt p99",
+      "value": 0.0024753640027483925,
+      "unit": "s",
+      "decision": "POS interpolation timing is stable"
+    },
+    {
+      "section": "stage7c_focused_audit",
+      "metric": "Stage 7B warning boundaries explained as edge-metric artifacts",
+      "value": 12,
+      "unit": "boundaries",
+      "decision": "not geometry failures"
+    },
+    {
+      "section": "stage7c_focused_audit",
+      "metric": "Isolated bad-time gaps",
+      "value": 5,
+      "unit": "boundaries",
+      "decision": "kept out of geometry judgment"
+    },
+    {
+      "section": "manual_review",
+      "metric": "00144-00145 CloudCompare focused review",
+      "value": "PASS",
+      "unit": "",
+      "decision": "time gap noted; no obvious geometric jump"
+    }
+  ],
+  "screenshot_checklist": [
+    {
+      "screenshot_id": "S1",
+      "priority": "required",
+      "stage": "Stage 6K",
+      "file_to_open": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6k_ladm2_full_00111_export\\stage6k_00111_ladm2_full_points_cloudcompare.txt",
+      "color_by": "height_m or scalar height",
+      "view": "overview and local overlap against existing L3/reference if loaded",
+      "evidence_goal": "Show that LADM-II model matches the validated 00111 reference area.",
+      "expected_observation": "No obvious horizontal offset or strip split in the stable reference segment.",
+      "capture_status": "to_capture",
+      "note": "Use this as the model-accuracy evidence screenshot."
+    },
+    {
+      "screenshot_id": "S2",
+      "priority": "required",
+      "stage": "Stage 7A",
+      "file_to_open": "C:\\proj_denoising_f3_2.0\\txt\\stage7a_00114_ch1_ladm2_cloudcompare.txt",
+      "color_by": "height_m",
+      "view": "full file overview",
+      "evidence_goal": "Show a representative full-point Stage 7A TXT output.",
+      "expected_observation": "Normal strip morphology and no severe distortion.",
+      "capture_status": "to_capture",
+      "note": "00114 belongs to the manually checked continuous segment."
+    },
+    {
+      "screenshot_id": "S3",
+      "priority": "required",
+      "stage": "Stage 7A continuous segment",
+      "file_to_open": "C:\\proj_denoising_f3_2.0\\txt\\stage7a_00114_ch1_ladm2_cloudcompare.txt; C:\\proj_denoising_f3_2.0\\txt\\stage7a_00115_ch1_ladm2_cloudcompare.txt; C:\\proj_denoising_f3_2.0\\txt\\stage7a_00116_ch1_ladm2_cloudcompare.txt; C:\\proj_denoising_f3_2.0\\txt\\stage7a_00117_ch1_ladm2_cloudcompare.txt; C:\\proj_denoising_f3_2.0\\txt\\stage7a_00118_ch1_ladm2_cloudcompare.txt",
+      "color_by": "source/file color or height_m",
+      "view": "00114-00118 combined overview",
+      "evidence_goal": "Show continuity across the previously inspected representative segment.",
+      "expected_observation": "Continuous strip trend, no obvious seam jump.",
+      "capture_status": "to_capture",
+      "note": "Open the five TXT files together or use LAZ files if CloudCompare is slow."
+    },
+    {
+      "screenshot_id": "S4",
+      "priority": "required",
+      "stage": "Stage 7C focused seam",
+      "file_to_open": "C:\\proj_denoising_f3_2.0\\qc\\stage7c_ch1_ladm2_focused_seam_audit\\cloudcompare_boundaries\\stage7c_boundary_00144_00145_stage7b_warning.txt",
+      "color_by": "source_seq or side_code",
+      "view": "focused boundary 00144-00145",
+      "evidence_goal": "Document the only remaining time-gap review boundary.",
+      "expected_observation": "0.12666 s time gap is noted, but no obvious horizontal offset, vertical step, or strip break.",
+      "capture_status": "visually_passed",
+      "note": "This is the screenshot the user just inspected."
+    },
+    {
+      "screenshot_id": "S5",
+      "priority": "optional",
+      "stage": "Stage 7C focused seam",
+      "file_to_open": "C:\\proj_denoising_f3_2.0\\qc\\stage7c_ch1_ladm2_focused_seam_audit\\cloudcompare_boundaries\\stage7c_boundary_00066_00067_stage7b_warning.txt",
+      "color_by": "source_seq or side_code",
+      "view": "focused boundary 00066-00067",
+      "evidence_goal": "Show a Stage 7B warning that Stage 7C explained as edge/window artifact.",
+      "expected_observation": "Short-window distribution differs, but wider-window continuity is acceptable.",
+      "capture_status": "optional",
+      "note": "Useful if the teacher asks why Stage 7B had warnings."
+    }
+  ],
+  "excluded_files": [
+    {
+      "seq": 54,
+      "status": "SKIPPED_BAD_TIME",
+      "source_manifest_status": "REPAIR_CANDIDATE",
+      "reason": "GNSS_SEC_CH1 appears to contain pulse index/count values",
+      "decision": "EXCLUDED_FROM_DISPLAY_CANDIDATE",
+      "note": "Timestamp/bad-time files remain isolated and are not used for geometry judgment."
+    },
+    {
+      "seq": 73,
+      "status": "SKIPPED_BAD_TIME",
+      "source_manifest_status": "REPAIR_CANDIDATE",
+      "reason": "GNSS_SEC_CH1 appears to contain pulse index/count values",
+      "decision": "EXCLUDED_FROM_DISPLAY_CANDIDATE",
+      "note": "Timestamp/bad-time files remain isolated and are not used for geometry judgment."
+    },
+    {
+      "seq": 93,
+      "status": "SKIPPED_BAD_TIME",
+      "source_manifest_status": "REPAIR_CANDIDATE",
+      "reason": "GNSS_SEC_CH1 appears to contain pulse index/count values",
+      "decision": "EXCLUDED_FROM_DISPLAY_CANDIDATE",
+      "note": "Timestamp/bad-time files remain isolated and are not used for geometry judgment."
+    },
+    {
+      "seq": 113,
+      "status": "SKIPPED_BAD_TIME",
+      "source_manifest_status": "REPAIR_CANDIDATE",
+      "reason": "GNSS_SEC_CH1 appears to contain pulse index/count values",
+      "decision": "EXCLUDED_FROM_DISPLAY_CANDIDATE",
+      "note": "Timestamp/bad-time files remain isolated and are not used for geometry judgment."
+    },
+    {
+      "seq": 132,
+      "status": "SKIPPED_BAD_TIME",
+      "source_manifest_status": "REPAIR_CANDIDATE",
+      "reason": "GNSS_SEC_CH1 appears to contain pulse index/count values",
+      "decision": "EXCLUDED_FROM_DISPLAY_CANDIDATE",
+      "note": "Timestamp/bad-time files remain isolated and are not used for geometry judgment."
+    },
+    {
+      "seq": 133,
+      "status": "SKIPPED_BAD_TIME",
+      "source_manifest_status": "BAD_TIME",
+      "reason": "less than 95% lidar_time_sec within POS range",
+      "decision": "EXCLUDED_FROM_DISPLAY_CANDIDATE",
+      "note": "Timestamp/bad-time files remain isolated and are not used for geometry judgment."
+    }
+  ],
+  "outputs": {
+    "package_dir": "C:\\proj_denoising_f3_2.0\\stage7d_teacher_package",
+    "teacher_summary_md": "C:\\proj_denoising_f3_2.0\\stage7d_teacher_package\\stage7d_teacher_summary.md",
+    "readme_md": "C:\\proj_denoising_f3_2.0\\stage7d_teacher_package\\README.md",
+    "qc_summary_csv": "C:\\proj_denoising_f3_2.0\\stage7d_teacher_package\\stage7d_qc_summary.csv",
+    "display_candidate_manifest_csv": "C:\\proj_denoising_f3_2.0\\stage7d_teacher_package\\stage7d_display_candidate_manifest.csv",
+    "excluded_files_csv": "C:\\proj_denoising_f3_2.0\\stage7d_teacher_package\\stage7d_excluded_bad_time_files.csv",
+    "screenshot_checklist_csv": "C:\\proj_denoising_f3_2.0\\stage7d_teacher_package\\stage7d_cloudcompare_screenshot_checklist.csv",
+    "release_decision_json": "C:\\proj_denoising_f3_2.0\\stage7d_teacher_package\\stage7d_release_decision.json",
+    "report_json": "C:\\proj_denoising_f3_2.0\\reports\\stage7d_ch1_ladm2_teacher_review_package_report.json",
+    "report_md": "C:\\proj_denoising_f3_2.0\\reports\\stage7d_ch1_ladm2_teacher_review_package_report.md",
+    "project_report_json": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage7d_ch1_ladm2_teacher_review_package_report.json",
+    "project_report_md": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage7d_ch1_ladm2_teacher_review_package_report.md"
+  }
+}

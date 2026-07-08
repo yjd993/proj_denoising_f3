@@ -1,0 +1,5 @@
+﻿  Function.cpp
+d:\allprogram\singlephotonlidar\singlephotonlidar\function.cpp(750): warning C4805: “==”: 在操作中将类型“double”与类型“bool”混合不安全
+  TextMain.cpp
+  正在生成代码...
+  SinglePhotonLidar.vcxproj -> D:\AllProgram\SinglePhotonLidar\x64\Debug\SinglePhotonLidar.exe

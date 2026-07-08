@@ -1,0 +1,177 @@
+﻿{
+  "stage_name": "stage4_continuous_ch1_sample",
+  "processed_channel": "CH1",
+  "input_files": [
+    "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00111_20260510190957.h5",
+    "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00112_20260510191000.h5",
+    "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00113_20260510191003.h5",
+    "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00114_20260510191006.h5",
+    "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00115_20260510191009.h5"
+  ],
+  "output_l3_merged": "intermediate\\l3_georef\\L3_CH1_continuous_cap_00111_00115.h5",
+  "preview_html": "outputs\\preview\\stage4_ch1_continuous_georef_preview.html",
+  "file_summaries": [
+    {
+      "input_l1": "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00111_20260510190957.h5",
+      "output_l2": "intermediate\\l2_body_xyz\\L2_CH1_cap_00111_20260510190957.h5",
+      "output_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00111_20260510190957.h5",
+      "output_l3": "intermediate\\l3_georef\\L3_CH1_cap_00111_20260510190957.h5",
+      "point_count_l2": 2326241,
+      "point_count_l3": 1540743,
+      "gps_time_min": 40211.900355924,
+      "gps_time_max": 40214.902070032,
+      "easting_mean": 394613.06780414353,
+      "northing_mean": 3417476.8879104303,
+      "height_median": 15.083041374339643,
+      "conclusion": "基本合理但有风险",
+      "warnings": [
+        "Calibrated range contains values below -5 m.",
+        "Height QC inlier rate is 97.42%; raw preview contains vertical outliers.",
+        "Applied reference height bias 6.036 m; boresight/lever-arm/range calibration still pending."
+      ],
+      "skipped": false,
+      "skip_reason": ""
+    },
+    {
+      "input_l1": "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00112_20260510191000.h5",
+      "output_l2": "intermediate\\l2_body_xyz\\L2_CH1_cap_00112_20260510191000.h5",
+      "output_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00112_20260510191000.h5",
+      "output_l3": "intermediate\\l3_georef\\L3_CH1_cap_00112_20260510191000.h5",
+      "point_count_l2": 2335234,
+      "point_count_l3": 1547440,
+      "gps_time_min": 40214.902072032,
+      "gps_time_max": 40217.903772128,
+      "easting_mean": 394608.61728162615,
+      "northing_mean": 3417479.481790674,
+      "height_median": 15.083041374339643,
+      "conclusion": "基本合理但有风险",
+      "warnings": [
+        "Height QC inlier rate is 96.69%; raw preview contains vertical outliers.",
+        "Applied reference height bias 12.872 m; boresight/lever-arm/range calibration still pending."
+      ],
+      "skipped": false,
+      "skip_reason": ""
+    },
+    {
+      "input_l1": "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00113_20260510191003.h5",
+      "output_l2": "intermediate\\l2_body_xyz\\L2_CH1_cap_00113_20260510191003.h5",
+      "output_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00113_20260510191003.h5",
+      "output_l3": "",
+      "point_count_l2": 2332645,
+      "point_count_l3": 0,
+      "gps_time_min": NaN,
+      "gps_time_max": NaN,
+      "easting_mean": NaN,
+      "northing_mean": NaN,
+      "height_median": NaN,
+      "conclusion": "不合理",
+      "warnings": [
+        "2,330,214 points are outside POS time range.",
+        "POS match success rate is below 95%: 0.10%.",
+        "POS match success rate below 95% (0.10%); likely invalid L1 GNSS time."
+      ],
+      "skipped": true,
+      "skip_reason": "POS match success rate below 95% (0.10%); likely invalid L1 GNSS time."
+    },
+    {
+      "input_l1": "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00114_20260510191006.h5",
+      "output_l2": "intermediate\\l2_body_xyz\\L2_CH1_cap_00114_20260510191006.h5",
+      "output_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00114_20260510191006.h5",
+      "output_l3": "intermediate\\l3_georef\\L3_CH1_cap_00114_20260510191006.h5",
+      "point_count_l2": 2329228,
+      "point_count_l3": 1542615,
+      "gps_time_min": 40220.90557426,
+      "gps_time_max": 40223.906686396,
+      "easting_mean": 394606.3710306977,
+      "northing_mean": 3417487.781967633,
+      "height_median": 15.083041374339643,
+      "conclusion": "基本合理但有风险",
+      "warnings": [
+        "Height QC inlier rate is 97.31%; raw preview contains vertical outliers.",
+        "Applied reference height bias 5.891 m; boresight/lever-arm/range calibration still pending."
+      ],
+      "skipped": false,
+      "skip_reason": ""
+    },
+    {
+      "input_l1": "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00115_20260510191009.h5",
+      "output_l2": "intermediate\\l2_body_xyz\\L2_CH1_cap_00115_20260510191009.h5",
+      "output_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00115_20260510191009.h5",
+      "output_l3": "intermediate\\l3_georef\\L3_CH1_cap_00115_20260510191009.h5",
+      "point_count_l2": 2328409,
+      "point_count_l3": 1541046,
+      "gps_time_min": 40223.906688396,
+      "gps_time_max": 40226.908654552,
+      "easting_mean": 394607.1238215978,
+      "northing_mean": 3417491.7480707346,
+      "height_median": 15.083041374339643,
+      "conclusion": "基本合理但有风险",
+      "warnings": [
+        "Height QC inlier rate is 97.42%; raw preview contains vertical outliers.",
+        "Applied reference height bias 9.760 m; boresight/lever-arm/range calibration still pending.",
+        "Stage 3 northing mean differs from reference L3 POINT_X mean by more than 10 m."
+      ],
+      "skipped": false,
+      "skip_reason": ""
+    }
+  ],
+  "total_l2_points": 11651757,
+  "total_l3_points": 6171844,
+  "time_gap_seconds": [
+    1.9999934011138976e-06,
+    3.00180213200656,
+    1.9999934011138976e-06
+  ],
+  "merged_gps_time": {
+    "count": 6171844,
+    "minimum": 40211.900355924,
+    "maximum": 40226.908654552,
+    "mean": 40219.403045445084
+  },
+  "merged_easting": {
+    "count": 6171844,
+    "minimum": 394531.6687792928,
+    "maximum": 394676.4150336562,
+    "mean": 394608.7939744324
+  },
+  "merged_northing": {
+    "count": 6171844,
+    "minimum": 3417438.2567675537,
+    "maximum": 3417553.2060665465,
+    "mean": 3417483.9715957427
+  },
+  "merged_height": {
+    "count": 6171844,
+    "minimum": -146.68251096719288,
+    "maximum": 96.77075919913358,
+    "mean": 14.705836207704996
+  },
+  "merged_lon": {
+    "count": 6171844,
+    "minimum": 121.89657160586658,
+    "maximum": 121.89808141146392,
+    "mean": 121.8973773088178
+  },
+  "merged_lat": {
+    "count": 6171844,
+    "minimum": 30.885541908661224,
+    "maximum": 30.88658447319977,
+    "mean": 30.88595833895371
+  },
+  "known_warnings": [
+    "L1_cap_00111_20260510190957.h5: Calibrated range contains values below -5 m.",
+    "L1_cap_00111_20260510190957.h5: Height QC inlier rate is 97.42%; raw preview contains vertical outliers.",
+    "L1_cap_00111_20260510190957.h5: Applied reference height bias 6.036 m; boresight/lever-arm/range calibration still pending.",
+    "L1_cap_00112_20260510191000.h5: Height QC inlier rate is 96.69%; raw preview contains vertical outliers.",
+    "L1_cap_00112_20260510191000.h5: Applied reference height bias 12.872 m; boresight/lever-arm/range calibration still pending.",
+    "L1_cap_00113_20260510191003.h5: skipped. POS match success rate below 95% (0.10%); likely invalid L1 GNSS time.",
+    "L1_cap_00114_20260510191006.h5: Height QC inlier rate is 97.31%; raw preview contains vertical outliers.",
+    "L1_cap_00114_20260510191006.h5: Applied reference height bias 5.891 m; boresight/lever-arm/range calibration still pending.",
+    "L1_cap_00115_20260510191009.h5: Height QC inlier rate is 97.42%; raw preview contains vertical outliers.",
+    "L1_cap_00115_20260510191009.h5: Applied reference height bias 9.760 m; boresight/lever-arm/range calibration still pending.",
+    "L1_cap_00115_20260510191009.h5: Stage 3 northing mean differs from reference L3 POINT_X mean by more than 10 m.",
+    "Time gap larger than 0.5 seconds detected between continuous files."
+  ],
+  "conclusion": "基本合理但有风险",
+  "recommendation": "连续文件存在超过 0.5 秒的时间间隔；建议人工查看接缝后再进入阶段 5。"
+}

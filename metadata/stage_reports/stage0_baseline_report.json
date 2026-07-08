@@ -1,0 +1,64 @@
+﻿{
+  "stage_name": "stage0_baseline_check",
+  "sample_l1": "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00111_20260510190957.h5",
+  "reference_l3": "0510_f3\\L3_DATA\\L2_cap_00111_20260510190957.h5",
+  "pos_source": "0510_f3\\0510f3_processed.mat",
+  "processed_channel": "CH1",
+  "lidar_time_offset_sec": 18.0,
+  "l1_missing_datasets": [],
+  "l3_missing_datasets": [],
+  "pos_missing_fields": [],
+  "l1_ch1_point_count": 2326241,
+  "l1_gnss_sec_raw": {
+    "count": 2326241,
+    "minimum": 40193.900355924,
+    "maximum": 40196.902070032,
+    "mean": 40195.40044341559
+  },
+  "l1_lidar_time_sec": {
+    "count": 2326241,
+    "minimum": 40211.900355924,
+    "maximum": 40214.902070032,
+    "mean": 40213.40044341559
+  },
+  "l3_gnss_sec": {
+    "count": 1490688,
+    "minimum": 40211.900355924,
+    "maximum": 40214.902070032,
+    "mean": 40213.40115835286
+  },
+  "l3_point_x": {
+    "count": 1490688,
+    "minimum": 3417456.3847683542,
+    "maximum": 3417500.64359792,
+    "mean": 3417477.91873351
+  },
+  "l3_point_y": {
+    "count": 1490688,
+    "minimum": 394583.82323862,
+    "maximum": 394643.4703634529,
+    "mean": 394612.9036911161
+  },
+  "l3_point_z": {
+    "count": 1490688,
+    "minimum": 14.345937014235716,
+    "maximum": 19.451964598407585,
+    "mean": 15.136239097425765
+  },
+  "pos_time_sec": {
+    "count": 340893,
+    "minimum": 39629.016,
+    "maximum": 41333.476,
+    "mean": 40481.24600000001
+  },
+  "pos_time_corrections": 0,
+  "time_alignment_abs_error_sec": {
+    "min": 0.0,
+    "max": 0.0,
+    "mean": 0.0007149372759158723
+  },
+  "pos_covers_lidar_time": true,
+  "known_warnings": [],
+  "conclusion": "合理",
+  "recommendation": "可以进入阶段 1：单文件 CH1 的 L1 到 L2 局部 XYZ。"
+}

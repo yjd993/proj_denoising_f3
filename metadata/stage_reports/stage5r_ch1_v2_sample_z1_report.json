@@ -1,0 +1,41 @@
+﻿{
+  "stage_name": "stage5r_ch1_v2_sample",
+  "zero_strategy": "Z1",
+  "summary_csv": "outputs\\qc\\stage5r_ch1_v2_sample\\ch1_v2_sample_z1_summary.csv",
+  "overlap_csv": "outputs\\qc\\stage5r_ch1_v2_sample\\ch1_v2_sample_z1_overlap_height_consistency.csv",
+  "txt_manifest": "outputs\\qc\\stage5r_ch1_v2_sample\\ch1_v2_sample_z1_txt_manifest.csv",
+  "first12_preview": "outputs\\preview\\stage5r_ch1_v2_z1_first12.html",
+  "stable_preview": "outputs\\preview\\stage5r_ch1_v2_z1_stable_00111_00115.html",
+  "h5_output_root": "C:\\proj_denoising_f3_2.0\\0510_f30510_f3_data\\outputs\\h5_ch1\\georef_v2_global_bias\\z1",
+  "method_registry": [
+    {
+      "method_id": "DG_ALS_001",
+      "method_name": "GNSS/IMU assisted direct georeferencing model",
+      "source_type": "peer_reviewed_journal",
+      "source_reference": "Skaloud & Lichti, ISPRS Journal of Photogrammetry and Remote Sensing, 2006",
+      "used_for_delete_or_transform": "yes, coordinate transform context"
+    },
+    {
+      "method_id": "PROJ_UTM_002",
+      "method_name": "UTM to lon/lat projection conversion",
+      "source_type": "official_documentation",
+      "source_reference": "PROJ / pyproj official documentation",
+      "used_for_delete_or_transform": "yes, coordinate conversion"
+    },
+    {
+      "method_id": "PROJECT_EMPIRICAL_PARAMETER",
+      "method_name": "time offset, time repair, axis mapping, fixed CH1 zero offset, global height bias",
+      "source_type": "project_empirical_parameter",
+      "source_reference": "Project data diagnosis; must not be described as a published algorithm",
+      "used_for_delete_or_transform": "yes, explicitly marked empirical transform parameters"
+    },
+    {
+      "method_id": "STRIP_QC_009",
+      "method_name": "overlap / strip consistency QC",
+      "source_type": "peer_reviewed_conference",
+      "source_reference": "Filin & Vosselman, ISPRS 2004",
+      "used_for_delete_or_transform": "no, QC only"
+    }
+  ],
+  "gate_rule": "manual confirmation required before full CH1 v2"
+}

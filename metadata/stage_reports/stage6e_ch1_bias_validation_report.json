@@ -1,0 +1,115 @@
+﻿{
+  "stage_name": "stage6e_ch1_bias_validation",
+  "method_registry": [
+    {
+      "method_id": "DG_ALS_001",
+      "method_name": "GNSS/IMU assisted airborne LiDAR direct georeferencing model",
+      "source_type": "peer_reviewed_journal",
+      "source_reference": "Skaloud & Lichti, ISPRS Journal of Photogrammetry and Remote Sensing, 2006",
+      "used_for_delete_or_transform": "yes, diagnostic transform only"
+    },
+    {
+      "method_id": "PROJECT_DIAGNOSTIC_PARAMETER",
+      "method_name": "Stage 6D rotation/scan/range-zero plus Stage 6E fixed bias diagnostic",
+      "source_type": "project_diagnostic_parameter",
+      "source_reference": "Exact-time comparison with existing L3 00111; not final production calibration",
+      "used_for_delete_or_transform": "yes, diagnostic transform only"
+    },
+    {
+      "method_id": "EXACT_TIME_MATCH_QC",
+      "method_name": "Reference L3 exact GNSS time validation",
+      "source_type": "project_qc_rule",
+      "source_reference": "Existing L3 reference GNSS_SEC and L1 GNSS_SEC_CH1 + 18",
+      "used_for_delete_or_transform": "no, QC only"
+    }
+  ],
+  "inputs": {
+    "reference_l3": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L3_DATA\\L2_cap_00111_20260510190957.h5",
+    "l1_sample": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00111_20260510190957.h5",
+    "pos_source": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\0510f3_processed.mat",
+    "calib_coeffs": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\untitled\\calib_coeffs.mat"
+  },
+  "fixed_parameters": {
+    "zero_offset_m": 20.49460272584239,
+    "angle_direction": "360-angle",
+    "angle_offset_deg": 1.0,
+    "roll_sign": 1,
+    "pitch_sign": 1,
+    "heading_sign": -1,
+    "heading_convention": "heading+180",
+    "rotation_order": "YXZ",
+    "rotation_transpose": true,
+    "bias_correction_ned_m": [
+      1.5006186931180263,
+      -0.6625962236673231,
+      -0.3428576246215087
+    ]
+  },
+  "sampling": {
+    "max_matched_points": 100000,
+    "matched_points_loaded": 100000,
+    "exact_match_total": 1490688,
+    "txt_max_points": 0,
+    "raw_txt_points": 100000,
+    "bias_txt_points": 100000,
+    "reference_txt_points": 100000
+  },
+  "raw_metrics": {
+    "north_rmse_m": 1.5475907001891869,
+    "east_rmse_m": 0.8243126544965006,
+    "down_rmse_m": 0.47665725768711503,
+    "horizontal_rmse_m": 1.7534332971844444,
+    "vector_rmse_m": 1.8170664459454733,
+    "north_median_m": -1.5006186931180263,
+    "east_median_m": 0.6625962236673231,
+    "down_median_m": 0.3428576246215087,
+    "north_mad_m": 0.4711461777454833,
+    "east_mad_m": 0.528953471354614,
+    "down_mad_m": 0.26102352825810726,
+    "north_p90_abs_m": 2.098189253891255,
+    "east_p90_abs_m": 1.3069584651536184,
+    "down_p90_abs_m": 0.6573712490799765,
+    "horizontal_p90_m": 2.2971684395512173,
+    "bias_removed_vector_rmse_m": 0.8082996156737804,
+    "bias_removed_horizontal_rmse_m": 0.723937779748837
+  },
+  "bias_corrected_metrics": {
+    "north_rmse_m": 0.48038418373155456,
+    "east_rmse_m": 0.5415874305855389,
+    "down_rmse_m": 0.3595307493813358,
+    "horizontal_rmse_m": 0.7239377797488373,
+    "vector_rmse_m": 0.8082996156737806,
+    "north_median_m": -9.992007221626409e-16,
+    "east_median_m": -4.440892098500626e-16,
+    "down_median_m": 7.105427357601002e-15,
+    "north_mad_m": 0.4711461777454842,
+    "east_mad_m": 0.528953471354614,
+    "down_mad_m": 0.26102352825810016,
+    "north_p90_abs_m": 0.6905906091985929,
+    "east_p90_abs_m": 0.7997223577776496,
+    "down_p90_abs_m": 0.4040348329730506,
+    "horizontal_p90_m": 0.8787423002247228,
+    "bias_removed_vector_rmse_m": 0.808299615673781,
+    "bias_removed_horizontal_rmse_m": 0.7239377797488373
+  },
+  "improvement": {
+    "vector_rmse_improvement_m": 1.0087668302716928,
+    "vector_rmse_improvement_pct": 55.51623236027572,
+    "horizontal_rmse_improvement_m": 1.029495517435607,
+    "horizontal_rmse_improvement_pct": 58.71312693152957
+  },
+  "gate": {
+    "conclusion": "合理",
+    "reason": "固定平移能解释主要系统偏差；进入 Stage 6F 检查其是否可由 body/FRD 杆臂和小安置角解释。",
+    "passed": true,
+    "recommendation": "Run Stage 6F next; do not run Stage 6G until Stage 6F is analyzed."
+  },
+  "outputs": {
+    "scan_bins_csv": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6e_bias_validation\\scan_angle_bin_residuals.csv",
+    "report_json": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6e_ch1_bias_validation_report.json",
+    "report_md": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6e_ch1_bias_validation_report.md",
+    "raw_txt": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6e_bias_validation\\stage6e_00111_raw_stage6d_fixed_cloudcompare.txt",
+    "bias_txt": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6e_bias_validation\\stage6e_00111_bias_corrected_cloudcompare.txt",
+    "reference_txt": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6e_bias_validation\\stage6e_00111_reference_l3_cloudcompare.txt"
+  }
+}

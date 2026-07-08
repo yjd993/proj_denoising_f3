@@ -1,0 +1,77 @@
+﻿{
+  "stage_name": "stage2_pos_matching",
+  "input_l2": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\intermediate\\l2_body_xyz\\L2_CH1_cap_00113_20260510191003_time_repaired.h5",
+  "output_l2_pos": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\intermediate\\l2_pos_matched\\L2P_CH1_cap_00113_20260510191003_time_repaired.h5",
+  "pos_source": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\0510f3_processed.mat",
+  "processed_channel": "CH1",
+  "point_count_before": 2332645,
+  "point_count_after": 2332645,
+  "pos_match_success_count": 2332645,
+  "pos_match_success_rate": 1.0,
+  "no_pos_count": 0,
+  "low_confidence_count": 0,
+  "lidar_time_sec": {
+    "count": 2332645,
+    "minimum": 40217.90377414519,
+    "maximum": 40220.90557224281,
+    "mean": 40219.40327589593
+  },
+  "pos_time_sec": {
+    "count": 340893,
+    "minimum": 39629.016,
+    "maximum": 41333.476,
+    "mean": 40481.24600000001
+  },
+  "pos_interp_dt_abs": {
+    "count": 2332645,
+    "minimum": 3.194145392626524e-09,
+    "maximum": 0.0024999959277920425,
+    "mean": 0.0012509171078723693
+  },
+  "pos_easting": {
+    "count": 2332645,
+    "minimum": 394616.7721711029,
+    "maximum": 394618.07989034196,
+    "mean": 394617.4133895297
+  },
+  "pos_northing": {
+    "count": 2332645,
+    "minimum": 3417473.840328974,
+    "maximum": 3417477.2244866914,
+    "mean": 3417475.523261415
+  },
+  "pos_height": {
+    "count": 2332645,
+    "minimum": 112.354,
+    "maximum": 112.394,
+    "mean": 112.36851514284805
+  },
+  "pos_roll": {
+    "count": 2332645,
+    "minimum": 0.2280001739739674,
+    "maximum": 5.196999569728971,
+    "mean": 3.1389490039771077
+  },
+  "pos_pitch": {
+    "count": 2332645,
+    "minimum": 4.417,
+    "maximum": 5.873999267220847,
+    "mean": 4.938968059459336
+  },
+  "pos_heading": {
+    "count": 2332645,
+    "minimum": 336.0910001387583,
+    "maximum": 338.1798878312982,
+    "mean": 336.5162536250093
+  },
+  "pos_time_corrections": 0,
+  "low_confidence_threshold_sec": 0.2,
+  "empty_channel_placeholders": [
+    "CH2",
+    "CH3",
+    "CH4"
+  ],
+  "known_warnings": [],
+  "conclusion": "合理",
+  "recommendation": "可以进入阶段 3：单文件 CH1 的地理坐标转换。"
+}

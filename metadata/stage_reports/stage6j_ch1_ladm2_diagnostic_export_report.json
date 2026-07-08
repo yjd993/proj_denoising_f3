@@ -1,0 +1,154 @@
+﻿{
+  "stage_name": "stage6j_ch1_ladm2_diagnostic_export",
+  "method_registry": [
+    {
+      "method_id": "CAO2017_LADM2_4_7_4_14",
+      "method_name": "LADM-II mirror normal and reflected beam scan geometry",
+      "source_type": "doctoral_thesis",
+      "source_reference": "曹彬才, 遥感测深数据处理方法研究, section 4.4.2, formulas 4-7 to 4-14",
+      "used_for_delete_or_transform": "yes, diagnostic transform only"
+    },
+    {
+      "method_id": "PROJECT_DIAGNOSTIC_PARAMETER",
+      "method_name": "Stage 6J LADM-II diagnostic export for CloudCompare/H5 review",
+      "source_type": "project_diagnostic_parameter",
+      "source_reference": "Stage 6I best candidate applied to exact-time existing L3 00111 comparison",
+      "used_for_delete_or_transform": "yes, diagnostic transform only"
+    },
+    {
+      "method_id": "EXACT_TIME_MATCH_QC",
+      "method_name": "Reference L3 exact GNSS time validation",
+      "source_type": "project_qc_rule",
+      "source_reference": "Existing L3 reference GNSS_SEC and L1 GNSS_SEC_CH1 + 18",
+      "used_for_delete_or_transform": "no, QC only"
+    }
+  ],
+  "inputs": {
+    "reference_l3": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L3_DATA\\L2_cap_00111_20260510190957.h5",
+    "l1_sample": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00111_20260510190957.h5",
+    "pos_source": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\0510_f3\\0510f3_processed.mat",
+    "calib_coeffs": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\untitled\\calib_coeffs.mat",
+    "stage6i_best_candidate": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6i_ladm2_scan_geometry_diagnostic\\best_candidate.json",
+    "stage6f_best_candidate": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6f_boresight_lever_diagnostic\\best_candidate.json"
+  },
+  "fixed_parameters": {
+    "zero_offset_m": 20.49460272584239,
+    "roll_sign": 1,
+    "pitch_sign": 1,
+    "heading_sign": -1,
+    "heading_convention": "heading+180",
+    "rotation_order": "YXZ",
+    "rotation_transpose": true
+  },
+  "stage6i_best_candidate": {
+    "angle_direction": "360-angle",
+    "angle_offset_deg": 298.9,
+    "mirror_tilt_deg": 7.75,
+    "frame_rotation_deg": -45.0,
+    "axis_mapping": "F=+Y,R=-X,D=-Z",
+    "axis_perm": [
+      1,
+      0,
+      2
+    ],
+    "axis_signs": [
+      1,
+      -1,
+      -1
+    ],
+    "boresight_roll_deg": 0.0,
+    "boresight_pitch_deg": -2.0,
+    "boresight_yaw_deg": 2.0,
+    "candidate_stage": "best_ladm2_full_eval",
+    "boresight_abs_max_deg": 2.0,
+    "lever_x_m": 0.011066721067964599,
+    "lever_y_m": -0.16492924007234208,
+    "lever_z_m": 0.033790707783461126,
+    "lever_norm_m": 0.16871851848135594,
+    "sample_points_used": 100000,
+    "mean_frd_down": 0.9727164091265199,
+    "scan_angle_mean_deg": 179.0597842956543,
+    "scan_angle_std_deg": 104.03492255391122,
+    "north_rmse_m": 0.09455106787710137,
+    "east_rmse_m": 0.12831721517798964,
+    "down_rmse_m": 0.23607529187038273,
+    "horizontal_rmse_m": 0.1593901256280796,
+    "vector_rmse_m": 0.28484514315575277,
+    "north_median_m": 0.021465168919635014,
+    "east_median_m": -0.012528502485391169,
+    "down_median_m": 0.023309218558217992,
+    "north_mad_m": 0.04903122436554064,
+    "east_mad_m": 0.11219281517321855,
+    "down_mad_m": 0.016861310351849568,
+    "north_p90_abs_m": 0.13821284532120431,
+    "east_p90_abs_m": 0.17531547359925811,
+    "down_p90_abs_m": 0.0634225739429823,
+    "horizontal_p90_m": 0.20345367802673708,
+    "bias_removed_vector_rmse_m": 0.28686990915520316,
+    "bias_removed_horizontal_rmse_m": 0.16133872150730838,
+    "rank": 1
+  },
+  "current_stage6f_metrics": {
+    "north_rmse_m": 0.46355400947330566,
+    "east_rmse_m": 0.5251822152173006,
+    "down_rmse_m": 0.23564602870342718,
+    "horizontal_rmse_m": 0.7004988785710684,
+    "vector_rmse_m": 0.7390722087340459,
+    "north_median_m": 0.023996050536227553,
+    "east_median_m": 0.04637028479209793,
+    "down_median_m": 0.00018974052282061393,
+    "north_mad_m": 0.4528996339525979,
+    "east_mad_m": 0.5132264004532221,
+    "down_mad_m": 0.024456733891113913,
+    "north_p90_abs_m": 0.6448549946076042,
+    "east_p90_abs_m": 0.7419387312157444,
+    "down_p90_abs_m": 0.06068772566109289,
+    "horizontal_p90_m": 0.785284020391026,
+    "bias_removed_vector_rmse_m": 0.7409031839493503,
+    "bias_removed_horizontal_rmse_m": 0.7024295815796165
+  },
+  "stage6j_metrics": {
+    "north_rmse_m": 0.09455106787710134,
+    "east_rmse_m": 0.1283172151779896,
+    "down_rmse_m": 0.23607529187038273,
+    "horizontal_rmse_m": 0.1593901256280796,
+    "vector_rmse_m": 0.2848451431557529,
+    "north_median_m": 0.021465168919635014,
+    "east_median_m": -0.012528502485389836,
+    "down_median_m": 0.023309218558225098,
+    "north_mad_m": 0.04903122436553886,
+    "east_mad_m": 0.11219281517321811,
+    "down_mad_m": 0.016861310351835357,
+    "north_p90_abs_m": 0.1382128453212029,
+    "east_p90_abs_m": 0.17531547359925811,
+    "down_p90_abs_m": 0.06342257394299651,
+    "horizontal_p90_m": 0.20345367802673672,
+    "bias_removed_vector_rmse_m": 0.2868699091552037,
+    "bias_removed_horizontal_rmse_m": 0.1613387215073083
+  },
+  "gate": {
+    "conclusion": "合理",
+    "reason": "Stage 6J diagnostic export reproduces Stage 6I accuracy and is suitable for CloudCompare inspection.",
+    "cloudcompare_ready": true,
+    "vector_improvement_vs_stage6f_pct": 61.459091575955334,
+    "horizontal_improvement_vs_stage6f_pct": 77.24619831608926,
+    "criteria": {
+      "max_vector_rmse_m": 0.35,
+      "max_horizontal_rmse_m": 0.2
+    }
+  },
+  "written_counts": {
+    "prediction_txt_points": 100000,
+    "reference_txt_points": 100000,
+    "merged_txt_points": 200000
+  },
+  "outputs": {
+    "diagnostic_h5": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6j_ladm2_diagnostic_export\\stage6j_00111_ladm2_exact_time_diagnostic.h5",
+    "scan_bins_csv": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6j_ladm2_diagnostic_export\\scan_angle_bin_residuals.csv",
+    "report_json": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6j_ch1_ladm2_diagnostic_export_report.json",
+    "report_md": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\metadata\\stage_reports\\stage6j_ch1_ladm2_diagnostic_export_report.md",
+    "prediction_txt": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6j_ladm2_diagnostic_export\\stage6j_00111_ladm2_prediction_cloudcompare.txt",
+    "reference_txt": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6j_ladm2_diagnostic_export\\stage6j_00111_reference_l3_cloudcompare.txt",
+    "merged_txt": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\stage6j_ladm2_diagnostic_export\\stage6j_00111_prediction_reference_merged_cloudcompare.txt"
+  }
+}

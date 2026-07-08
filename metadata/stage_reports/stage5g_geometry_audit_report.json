@@ -1,0 +1,78 @@
+﻿{
+  "stage_name": "stage5g_ch1_geometry_audit",
+  "l1_sample": "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00111_20260510190957.h5",
+  "reference_l3": "0510_f3\\L3_DATA\\L2_cap_00111_20260510190957.h5",
+  "sample_count": 2326241,
+  "matched_count": 30000,
+  "max_matched_points": 30000,
+  "match_mode": "exact",
+  "max_dt_sec": 2e-06,
+  "best_body": {
+    "zero_strategy": "Z0",
+    "angle_mode": "180-angle",
+    "zero_used_m": 0.0,
+    "direct_lidar_x_rmse_m": 14.830826917601465,
+    "direct_lidar_y_rmse_m": 12.749198153530832,
+    "direct_lidar_z_rmse_m": 57.730630993717355,
+    "direct_lidar_vector_rmse_m": 60.95343497745312
+  },
+  "best_mapping": {
+    "zero_strategy": "Z0",
+    "angle_mode": "180-angle",
+    "mapping": "LIDAR_X=1*body_z+offset;LIDAR_Y=1*body_y+offset;LIDAR_Z=-1*body_x+offset",
+    "allow_scale": false,
+    "mean_rmse_m": 25.22952880075528,
+    "max_rmse_m": 56.37513840739596,
+    "details_json": "[{\"target_axis\": \"LIDAR_X\", \"source_axis\": \"body_z\", \"sign\": 1, \"scale\": 1.0, \"offset\": -30.495755095603155, \"median_error_m\": 0.0, \"mad_error_m\": 40.62362493603983, \"rmse_m\": 56.37513840739596, \"p90_abs_error_m\": 86.95006917375346}, {\"target_axis\": \"LIDAR_Y\", \"source_axis\": \"body_y\", \"sign\": 1, \"scale\": 1.0, \"offset\": -8.391596345942407, \"median_error_m\": 1.7763568394002505e-15, \"mad_error_m\": 6.726207030961914, \"rmse_m\": 9.893271294652555, \"p90_abs_error_m\": 17.020886754746037}, {\"target_axis\": \"LIDAR_Z\", \"source_axis\": \"body_x\", \"sign\": -1, \"scale\": 1.0, \"offset\": 96.32068777607901, \"median_error_m\": 7.105427357601002e-15, \"mad_error_m\": 3.939844921904431, \"rmse_m\": 9.420176700217327, \"p90_abs_error_m\": 18.279809247933517}]"
+  },
+  "best_offset": {
+    "zero_strategy": "Z0",
+    "angle_mode": "360-angle",
+    "rotation_mode": "current",
+    "north_offset_rmse_m": 10.527656383675584,
+    "east_offset_rmse_m": 10.3126477383124,
+    "down_offset_rmse_m": 57.61857753959786,
+    "offset_vector_rmse_m": 59.47337833008914,
+    "north_offset_median_error_m": 0.2765100810771295,
+    "east_offset_median_error_m": 2.042440792291447,
+    "down_offset_median_error_m": -76.25569743462579,
+    "north_offset_p90_abs_error_m": 22.600317685667566,
+    "east_offset_p90_abs_error_m": 19.135814995083983,
+    "down_offset_p90_abs_error_m": 77.67179188817447
+  },
+  "best_georef": {
+    "zero_strategy": "Z0",
+    "angle_mode": "360-angle",
+    "rotation_mode": "current",
+    "easting_rmse_m": 10.312649148660094,
+    "northing_rmse_m": 10.52765702152271,
+    "height_rmse_m": 66.59130962239549,
+    "height_bias_m": -76.25569847224304,
+    "easting_median_error_m": 2.042449912871234,
+    "northing_median_error_m": 0.2765872448217124,
+    "height_median_error_m": 7.105427357601002e-15
+  },
+  "method_registry": [
+    {
+      "method_id": "DG_ALS_001",
+      "method_name": "direct georeferencing model diagnostic",
+      "source_type": "peer_reviewed_journal",
+      "source_reference": "Skaloud & Lichti, ISPRS Journal of Photogrammetry and Remote Sensing, 2006",
+      "used_for_delete_or_transform": "no, diagnostic only"
+    },
+    {
+      "method_id": "STRIP_QC_009",
+      "method_name": "overlap / strip consistency QC",
+      "source_type": "peer_reviewed_conference",
+      "source_reference": "Filin & Vosselman, ISPRS 2004",
+      "used_for_delete_or_transform": "no, diagnostic only"
+    },
+    {
+      "method_id": "PROJECT_EMPIRICAL_PARAMETER",
+      "method_name": "candidate zero offset, scan angle convention, body axis mapping",
+      "source_type": "project_empirical_parameter",
+      "source_reference": "Project diagnostic candidates only",
+      "used_for_delete_or_transform": "no, candidates are not final calibration"
+    }
+  ]
+}

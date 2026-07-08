@@ -1,0 +1,37 @@
+﻿{
+  "stage_name": "Stage B CH1 light denoise",
+  "input_files": 446,
+  "output_files": 446,
+  "method_registry": [
+    {
+      "method_id": "SOR_003",
+      "method_name": "Statistical Outlier Removal",
+      "purpose": "light channel-internal point cloud outlier removal",
+      "source_type": "official_documentation",
+      "source_reference": "PCL StatisticalOutlierRemoval documentation",
+      "used_for_delete_or_transform": "yes"
+    }
+  ],
+  "project_empirical_parameters": [],
+  "point_count_before": 656367796,
+  "point_count_after": 648042458,
+  "deleted_or_flagged_count": 8325338,
+  "delete_ratio": 0.012683952580757024,
+  "delete_ratio_limit": 0.03,
+  "time_repair_files": "retained from raw; not modified in this stage",
+  "known_warnings": [],
+  "gate_conclusion": "基本合理但有风险",
+  "manual_checklist": [
+    "建筑边缘是否保留",
+    "屋顶细节是否保留",
+    "飞点是否减少",
+    "删除比例是否可接受",
+    "是否继续 CH2"
+  ],
+  "recommendation": "CH1 轻度去噪完成；建议人工查看去噪前后形态后再进入 CH2。",
+  "elapsed_sec": 1270.3720865249634,
+  "output_dir": "C:\\proj_denoising_f3_2.0\\0510_f30510_f3_data\\outputs\\h5_ch1\\light_denoised",
+  "summary_csv": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\qc\\ch1_light_denoise_summary.csv",
+  "preview_html": "D:\\Programdata\\Airborne_LiDAR_Data\\proj_denoising_f3\\outputs\\preview\\ch1_light_denoised_overview.html",
+  "ror_enabled": false
+}

@@ -1,0 +1,23 @@
+﻿{
+  "stage_name": "Stage A CH1 raw 整理",
+  "input_files": 446,
+  "output_files": 446,
+  "storage_mode": "hardlink_or_existing",
+  "point_count_ch1_total": 656367796,
+  "time_repair_points_total": 42063798,
+  "link_failed": [],
+  "nonempty_other_channel_files": [],
+  "method_registry": [
+    {
+      "method_id": "DATA_ORG_000",
+      "method_name": "raw L3 file organization by hardlink",
+      "purpose": "整理 CH1 raw L3，不改变点云坐标或删点",
+      "source_type": "data_management",
+      "source_reference": "project storage rule",
+      "used_for_delete_or_transform": "no"
+    }
+  ],
+  "project_empirical_parameters": [],
+  "gate_conclusion": "合理",
+  "recommendation": "可以进入 Stage B：CH1 轻度去噪。"
+}

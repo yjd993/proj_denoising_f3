@@ -1,0 +1,13 @@
+﻿{
+  "stage_name": "stage5_full_ch1",
+  "summary_csv": "outputs\\qc\\stage5_file_summary.csv",
+  "repair_log_csv": "outputs\\qc\\stage5_time_repair_log.csv",
+  "preview_html": "outputs\\preview\\stage5_ch1_full_overview.html",
+  "output_dir": "outputs\\h5_ch1",
+  "elapsed_sec": 1326.8900089263916,
+  "files_attempted": 447,
+  "files_processed_or_reused": 446,
+  "files_skipped": 1,
+  "repaired_files_used": 29,
+  "total_l3_points": 656367796
+}

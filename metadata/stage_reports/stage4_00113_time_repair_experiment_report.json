@@ -1,0 +1,65 @@
+﻿{
+  "stage_name": "stage4_00113_time_repair_experiment",
+  "time_repair_status": "REPAIRED_TIME_EXPERIMENT",
+  "input_bad_l2": "intermediate\\l2_body_xyz\\L2_CH1_cap_00113_20260510191003.h5",
+  "output_repaired_l2": "intermediate\\l2_body_xyz\\L2_CH1_cap_00113_20260510191003_time_repaired.h5",
+  "output_repaired_l2_pos": "intermediate\\l2_pos_matched\\L2P_CH1_cap_00113_20260510191003_time_repaired.h5",
+  "output_repaired_l3": "intermediate\\l3_georef\\L3_CH1_cap_00113_20260510191003_time_repaired.h5",
+  "output_merged_l3": "intermediate\\l3_georef\\L3_CH1_continuous_cap_00111_00115_with_00113_time_repaired.h5",
+  "preview_html": "outputs\\preview\\stage4_ch1_continuous_with_00113_time_repaired_preview.html",
+  "model": {
+    "prev_raw_min": 40196.902072032,
+    "prev_raw_max": 40199.903772128,
+    "next_raw_min": 40202.90557426,
+    "next_raw_max": 40205.906686396,
+    "pulse_min": 1.0,
+    "pulse_max": 1488039.0,
+    "pulse_period_sec": 2.017193748731501e-06,
+    "repaired_raw_start": 40199.90377414519,
+    "repaired_raw_end": 40202.90557224281,
+    "repaired_lidar_start": 40217.90377414519,
+    "repaired_lidar_end": 40220.90557224281,
+    "repaired_point_count": 2332645
+  },
+  "stage2_pos_match_success_rate": 1.0,
+  "stage2_pos_match_success_count": 2332645,
+  "stage3_point_count_after": 1547274,
+  "merged_point_count": 7719118,
+  "time_gaps_seconds": [
+    1.9999934011138976e-06,
+    2.017193764913827e-06,
+    2.017193764913827e-06,
+    1.9999934011138976e-06
+  ],
+  "merged_gps_time": {
+    "count": 7719118,
+    "minimum": 40211.900355924,
+    "maximum": 40226.908654552,
+    "mean": 40219.40281720263
+  },
+  "merged_easting": {
+    "count": 7719118,
+    "minimum": 394524.5878555527,
+    "maximum": 394676.4150336562,
+    "mean": 394608.3021589909
+  },
+  "merged_northing": {
+    "count": 7719118,
+    "minimum": 3417438.2567675537,
+    "maximum": 3417553.2060665465,
+    "mean": 3417483.9282221915
+  },
+  "merged_height": {
+    "count": 7719118,
+    "minimum": -146.68251096719288,
+    "maximum": 99.45016500552879,
+    "mean": 14.718524894892383
+  },
+  "conclusion": "基本合理但有风险",
+  "recommendation": "请人工查看修复预览；若缺失扫描带被补上且接缝可接受，再决定是否把 00113 作为修复数据纳入阶段 4。",
+  "known_warnings": [
+    "00113 原始 GNSS_SEC_CH1 异常，本结果按 PULSE_INDEX_CH1 线性重建时间轴。",
+    "这是数据修复实验，不是原始可靠时间戳恢复。",
+    "修复仅用于判断是否能补上缺失扫描带；进入全量处理前应保留 repaired 标记。"
+  ]
+}

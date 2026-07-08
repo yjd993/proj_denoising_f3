@@ -1,0 +1,79 @@
+﻿{
+  "stage_name": "stage1_l1_to_l2_body_xyz",
+  "input_l1": "0510_f3\\L1-TIME_ANGE_DIST_DATA\\L1_cap_00115_20260510191009.h5",
+  "output_l2": "intermediate\\l2_body_xyz\\L2_CH1_cap_00115_20260510191009.h5",
+  "preview_html": "outputs\\preview\\stage1_ch1_body_xyz_cap_00115_20260510191009.html",
+  "processed_channel": "CH1",
+  "lidar_time_offset_sec": 18.0,
+  "point_count_before": 2328409,
+  "point_count_after": 2328409,
+  "filtered_nonpositive_range_count": 0,
+  "gnss_sec_raw": {
+    "count": 2328409,
+    "minimum": 40205.906688396,
+    "maximum": 40208.908654552,
+    "mean": 40207.407167139325
+  },
+  "lidar_time_sec": {
+    "count": 2328409,
+    "minimum": 40223.906688396,
+    "maximum": 40226.908654552,
+    "mean": 40225.407167139325
+  },
+  "raw_dist": {
+    "count": 2328409,
+    "minimum": 9289.0,
+    "maximum": 237000.0,
+    "mean": 74749.15129687267
+  },
+  "range_m_before_calibration": {
+    "count": 2328409,
+    "minimum": 10.885546875000001,
+    "maximum": 277.73437500000006,
+    "mean": 87.59666167602268
+  },
+  "range_m": {
+    "count": 2328409,
+    "minimum": 0.009994159571134946,
+    "maximum": 266.82507382610027,
+    "mean": 76.71140728084383
+  },
+  "scan_angle_deg": {
+    "count": 2328409,
+    "minimum": 0.0,
+    "maximum": 359.9945068359375,
+    "mean": 180.14493894219237
+  },
+  "body_x": {
+    "count": 2328409,
+    "minimum": -50.38180215833331,
+    "maximum": 42.652614903127436,
+    "mean": -1.379490667865103
+  },
+  "body_y": {
+    "count": 2328409,
+    "minimum": -66.22580897433163,
+    "maximum": 63.141125197002324,
+    "mean": 0.5973333621827236
+  },
+  "body_z": {
+    "count": 2328409,
+    "minimum": 0.009789186784369984,
+    "maximum": 261.1036969822159,
+    "mean": 74.74536373831887
+  },
+  "zero_peak_m": 10.884375,
+  "channel_calibration": {
+    "zero_offset": 18.802278358296036,
+    "slope": 1.000126486323461,
+    "intercept": -0.008823548695634469
+  },
+  "empty_channel_placeholders": [
+    "CH2",
+    "CH3",
+    "CH4"
+  ],
+  "known_warnings": [],
+  "conclusion": "合理",
+  "recommendation": "可以进入阶段 2：单文件 CH1 的 POS 时间匹配。"
+}

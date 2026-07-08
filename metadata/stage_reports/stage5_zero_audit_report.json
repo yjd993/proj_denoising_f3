@@ -1,0 +1,37 @@
+﻿{
+  "stage_name": "stage5z_ch1_zero_audit",
+  "audit_csv": "outputs\\qc\\stage5_zero_audit\\ch1_zero_peak_audit.csv",
+  "first12_preview": "outputs\\preview\\stage5_zero_audit_first12.html",
+  "stable_preview": "outputs\\preview\\stage5_zero_audit_stable_00111_00115.html",
+  "summary": {
+    "files_audited": 18,
+    "low_zero_support_files": 18,
+    "fixed_zero_recommended_files": 18,
+    "max_overlap_abs_median_dz_m": 19.872959252600328,
+    "median_overlap_abs_median_dz_m": 7.14502728193926
+  },
+  "method_registry": [
+    {
+      "method_id": "DG_ALS_001",
+      "method_name": "direct georeferencing / range offset audit context",
+      "source_type": "peer_reviewed_journal",
+      "source_reference": "Skaloud & Lichti, ISPRS Journal of Photogrammetry and Remote Sensing, 2006",
+      "used_for_delete_or_transform": "no, audit only"
+    },
+    {
+      "method_id": "STRIP_QC_009",
+      "method_name": "overlap / strip consistency QC",
+      "source_type": "peer_reviewed_conference",
+      "source_reference": "Filin & Vosselman, ISPRS 2004",
+      "used_for_delete_or_transform": "no, audit only"
+    },
+    {
+      "method_id": "PROJECT_QC_RULE",
+      "method_name": "zero peak support count and warning thresholds",
+      "source_type": "project_qc_rule",
+      "source_reference": "Project-specific diagnostic threshold; not a deletion or transformation algorithm",
+      "used_for_delete_or_transform": "no"
+    }
+  ],
+  "gate_rule": "manual confirmation required before Stage 5R sample/full processing"
+}
