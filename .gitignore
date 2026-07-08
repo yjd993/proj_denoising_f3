@@ -26,3 +26,6 @@ outputs/**/*.laz
 Thumbs.db
 .vscode/
 .idea/
+
+# Stage reports
+阶段汇报/
