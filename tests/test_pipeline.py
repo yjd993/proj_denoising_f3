@@ -410,7 +410,10 @@ class ConfigurationTests(TempTest):
         env["AIRBORNE_LIDAR_PROJECT_DATA_ROOT"] = str(self.root / "input")
         env["AIRBORNE_LIDAR_STAGE_ROOT"] = str(self.root / "output")
         result = subprocess.run([sys.executable, "-c", code], env=env, capture_output=True, text=True, check=True)
-        self.assertEqual(json.loads(result.stdout), [str(self.root / "input"), str(self.root / "output")])
+        self.assertEqual(
+            json.loads(result.stdout),
+            [str((self.root / "input").resolve()), str((self.root / "output").resolve())],
+        )
         self.assertEqual({}, snapshot(self.root))
 
     def test_default_paths_are_repo_relative_and_readonly(self):
