@@ -1,0 +1,3 @@
+file,seq,status,reason,point_count,gnss_min,gnss_max,pulse_min,pulse_max,total_pulses
+0510_f3/L1-TIME_ANGE_DIST_DATA/L1_cap_00001_20000101000000.h5,1,OK,synthetic example only,4,1,2,1,4,4
+0510_f3/L1-TIME_ANGE_DIST_DATA/L1_cap_00002_20000101000001.h5,2,BAD_TIME,synthetic non-OK example,4,0,0,1,4,4

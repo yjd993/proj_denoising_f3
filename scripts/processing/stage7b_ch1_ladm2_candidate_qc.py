@@ -5,7 +5,6 @@ import csv
 import gc
 import json
 import math
-import os
 from pathlib import Path
 from typing import Any
 
@@ -13,19 +12,10 @@ import h5py
 import numpy as np
 
 
-ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_PROJECT_DATA_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3",
-    )
-)
-DEFAULT_OUTPUT_ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_STAGE_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3_2.0",
-    )
-)
-REPORT_DIR = ROOT / "metadata" / "stage_reports"
+from project_paths import DATA_ROOT, STAGE_ROOT
+
+ROOT = DATA_ROOT
+DEFAULT_OUTPUT_ROOT = STAGE_ROOT
 
 REQUIRED_CHAIN_FIELDS = [
     "point_index",
@@ -840,9 +830,6 @@ Stage 7B is QC only. It does not repair skipped files, does not run Stage 6G, an
     report_md_output = output_root / "reports" / "stage7b_ch1_ladm2_candidate_qc_report.md"
     report_md_output.parent.mkdir(parents=True, exist_ok=True)
     report_md_output.write_text(content, encoding="utf-8-sig")
-    report_md_project = REPORT_DIR / "stage7b_ch1_ladm2_candidate_qc_report.md"
-    report_md_project.parent.mkdir(parents=True, exist_ok=True)
-    report_md_project.write_text(content, encoding="utf-8-sig")
 
 
 def run(args: argparse.Namespace) -> None:
@@ -850,7 +837,6 @@ def run(args: argparse.Namespace) -> None:
     qc_dir = output_root / "qc" / "stage7b_ch1_ladm2_candidate_qc"
     qc_dir.mkdir(parents=True, exist_ok=True)
     (output_root / "reports").mkdir(parents=True, exist_ok=True)
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
     manifest_path = args.manifest or output_root / "manifest" / "stage7a_ch1_ladm2_00050_00150_manifest.csv"
     manifest_rows = read_manifest(manifest_path)
@@ -911,7 +897,6 @@ def run(args: argparse.Namespace) -> None:
     summary = aggregate_summary(manifest_rows, per_file_rows, seam_rows, scan_rows, range_rows)
     conclusion, reason, ready = gate_conclusion(summary, args)
     report_json_output = output_root / "reports" / "stage7b_ch1_ladm2_candidate_qc_report.json"
-    report_json_project = REPORT_DIR / "stage7b_ch1_ladm2_candidate_qc_report.json"
     payload = {
         "stage_name": "stage7b_ch1_ladm2_candidate_qc",
         "method_registry": METHOD_REGISTRY,
@@ -963,12 +948,9 @@ def run(args: argparse.Namespace) -> None:
             "cloudcompare_sample_checklist_csv": str(checklist_csv),
             "report_json": str(report_json_output),
             "report_md": str(output_root / "reports" / "stage7b_ch1_ladm2_candidate_qc_report.md"),
-            "project_report_json": str(report_json_project),
-            "project_report_md": str(REPORT_DIR / "stage7b_ch1_ladm2_candidate_qc_report.md"),
         },
     }
     write_json(report_json_output, payload)
-    write_json(report_json_project, payload)
     write_report(payload, output_root)
     print(
         json.dumps(

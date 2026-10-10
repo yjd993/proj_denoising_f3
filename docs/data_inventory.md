@@ -1,6 +1,9 @@
 # 0510_f3 Data Inventory
 
-Checked on 2026-06-24.
+Historical external-dataset snapshot checked on 2026-06-24.
+These files are not bundled with a Git clone. Copy data and runtime metadata
+separately as described in `external_data.md`; this inventory is not a live
+integrity check or a guarantee that every processing stage is ready.
 
 ## L1 Source Products
 
@@ -9,7 +12,7 @@ Checked on 2026-06-24.
 - Count: 447 files
 - Total size: about 106.64 GiB
 - Sequence range: `00002` to `00449`
-- Missing sequence: `000308`
+- Missing sequence: `00308`
 - Time range by filename: `2026-05-10 19:04:25` to `2026-05-10 19:27:03`
 
 Typical L1 datasets:

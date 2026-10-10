@@ -5,7 +5,6 @@ import csv
 import gc
 import json
 import math
-import os
 from pathlib import Path
 from typing import Any
 
@@ -13,19 +12,10 @@ import h5py
 import numpy as np
 
 
-ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_PROJECT_DATA_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3",
-    )
-)
-DEFAULT_OUTPUT_ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_STAGE_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3_2.0",
-    )
-)
-REPORT_DIR = ROOT / "metadata" / "stage_reports"
+from project_paths import DATA_ROOT, STAGE_ROOT
+
+ROOT = DATA_ROOT
+DEFAULT_OUTPUT_ROOT = STAGE_ROOT
 
 METHOD_REGISTRY = [
     {
@@ -678,9 +668,6 @@ Stage 7C does not modify Stage 7A H5/LAZ/TXT outputs and does not repair skipped
     md_output = output_root / "reports" / "stage7c_ch1_ladm2_focused_seam_audit_report.md"
     md_output.parent.mkdir(parents=True, exist_ok=True)
     md_output.write_text(content, encoding="utf-8-sig")
-    md_project = REPORT_DIR / "stage7c_ch1_ladm2_focused_seam_audit_report.md"
-    md_project.parent.mkdir(parents=True, exist_ok=True)
-    md_project.write_text(content, encoding="utf-8-sig")
 
 
 def run(args: argparse.Namespace) -> None:
@@ -689,7 +676,6 @@ def run(args: argparse.Namespace) -> None:
     txt_dir = qc_dir / "cloudcompare_boundaries"
     qc_dir.mkdir(parents=True, exist_ok=True)
     txt_dir.mkdir(parents=True, exist_ok=True)
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
     (output_root / "reports").mkdir(parents=True, exist_ok=True)
 
     manifest_csv = args.manifest or output_root / "manifest" / "stage7a_ch1_ladm2_00050_00150_manifest.csv"
@@ -757,7 +743,6 @@ def run(args: argparse.Namespace) -> None:
     summary = aggregate(boundary_rows, export_rows)
     gate_payload = gate(summary)
     report_json_output = output_root / "reports" / "stage7c_ch1_ladm2_focused_seam_audit_report.json"
-    report_json_project = REPORT_DIR / "stage7c_ch1_ladm2_focused_seam_audit_report.json"
     payload = {
         "stage_name": "stage7c_ch1_ladm2_focused_seam_audit",
         "method_registry": METHOD_REGISTRY,
@@ -791,12 +776,9 @@ def run(args: argparse.Namespace) -> None:
             "cloudcompare_boundaries_dir": str(txt_dir),
             "report_json": str(report_json_output),
             "report_md": str(output_root / "reports" / "stage7c_ch1_ladm2_focused_seam_audit_report.md"),
-            "project_report_json": str(report_json_project),
-            "project_report_md": str(REPORT_DIR / "stage7c_ch1_ladm2_focused_seam_audit_report.md"),
         },
     }
     write_json(report_json_output, payload)
-    write_json(report_json_project, payload)
     write_report(payload, output_root)
     print(
         json.dumps(

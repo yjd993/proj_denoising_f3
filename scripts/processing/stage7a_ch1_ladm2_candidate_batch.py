@@ -5,7 +5,6 @@ import csv
 import gc
 import json
 import math
-import os
 import re
 import shutil
 from pathlib import Path
@@ -19,24 +18,14 @@ import ch1_pipeline as pipe
 import stage5_full_ch1 as stage5
 import stage6e_ch1_bias_validation as stage6e
 import stage6k_ch1_ladm2_full_00111_export as stage6k
+from project_paths import DATA_ROOT, STAGE_ROOT
 
 
-ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_PROJECT_DATA_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3",
-    )
-)
-DEFAULT_OUTPUT_ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_STAGE_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3_2.0",
-    )
-)
+ROOT = DATA_ROOT
+DEFAULT_OUTPUT_ROOT = STAGE_ROOT
 STAGE6I_BEST = ROOT / "outputs" / "qc" / "stage6i_ladm2_scan_geometry_diagnostic" / "best_candidate.json"
 STAGE6N_REPORT = ROOT / "metadata" / "stage_reports" / "stage6n_ch1_ladm2_continuous_qc_report.json"
 STAGE6M_REPORT = ROOT / "metadata" / "stage_reports" / "stage6m_00113_timestamp_audit_report.json"
-REPORT_DIR = ROOT / "metadata" / "stage_reports"
 CRS_EPSG = 32651
 
 METHOD_REGISTRY = [
@@ -58,7 +47,7 @@ METHOD_REGISTRY = [
         "method_id": "STAGE7A_RANGE_LIMIT",
         "method_name": "Limited production-candidate batch range",
         "source_type": "user_scope_rule",
-        "source_reference": "User requested Stage 7A only for L1 sequences 00050-00150 and output under C:\\proj_denoising_f3_2.0",
+        "source_reference": "Default L1 scope 00050-00150; sequence range and output root are CLI-configurable",
         "used_for_delete_or_transform": "no, output scope only",
     },
     {
@@ -348,7 +337,9 @@ def write_laz(
     las.scan_angle_deg = selected["scan_angle_deg"].astype(np.float32)
     las.point_index = selected["point_index"].astype(np.uint32)
     las.pos_quality_flag = selected["pos_quality_flag"].astype(np.uint16)
-    las.write(temp_path)
+    # Path-based writes infer compression from ".tmp"; a stream honors do_compress.
+    with temp_path.open("wb+") as stream:
+        las.write(stream, do_compress=True)
     replace_temp(temp_path, path, overwrite)
     return int(selected.size)
 
@@ -378,9 +369,9 @@ def row_from_skip(info: stage5.FileInfo, status: str, reason: str, paths: dict[s
         "gps_time_max_sec": "",
         "range_m_gt_30_count": "",
         "height_median_m": "",
-        "h5_path": rel(paths["h5"]),
-        "laz_path": rel(paths["laz"]),
-        "txt_path": rel(paths["txt"]),
+        "h5_path": str(paths["h5"].resolve()),
+        "laz_path": str(paths["laz"].resolve()),
+        "txt_path": str(paths["txt"].resolve()),
         "h5_size_bytes": 0,
         "laz_size_bytes": 0,
         "txt_size_bytes": 0,
@@ -409,9 +400,9 @@ def row_from_success(
         "gps_time_max_sec": stats["gps_time_sec"]["max"],
         "range_m_gt_30_count": stats["range_m_gt_30_count"],
         "height_median_m": stats["height_m"]["median"],
-        "h5_path": rel(paths["h5"]),
-        "laz_path": rel(paths["laz"]),
-        "txt_path": rel(paths["txt"]),
+        "h5_path": str(paths["h5"].resolve()),
+        "laz_path": str(paths["laz"].resolve()),
+        "txt_path": str(paths["txt"].resolve()),
         "h5_size_bytes": output_size(paths["h5"]),
         "laz_size_bytes": output_size(paths["laz"]),
         "txt_size_bytes": output_size(paths["txt"]),
@@ -538,13 +529,39 @@ Stage 7A is a production candidate batch, not a final deliverable. Do not merge 
     report_md_output = output_root / "reports" / "stage7a_ch1_ladm2_candidate_batch_report.md"
     report_md_output.parent.mkdir(parents=True, exist_ok=True)
     report_md_output.write_text(content, encoding="utf-8-sig")
-    report_md_project = REPORT_DIR / "stage7a_ch1_ladm2_candidate_batch_report.md"
-    report_md_project.parent.mkdir(parents=True, exist_ok=True)
-    report_md_project.write_text(content, encoding="utf-8-sig")
+
+
+def selection_status(
+    info: stage5.FileInfo, paths: dict[str, Path], args: argparse.Namespace
+) -> tuple[str, str]:
+    if info.status != "OK" and not args.include_non_ok:
+        return "SKIPPED_BAD_TIME", info.reason or f"manifest status is {info.status}"
+    if not args.overwrite and any(path.exists() for path in paths.values()):
+        return "SKIPPED_EXISTS", "one or more output files already exist; use --overwrite to regenerate"
+    return "READY", ""
 
 
 def run(args: argparse.Namespace) -> None:
-    output_root = args.output_root
+    output_root = args.output_root.resolve()
+    files = processing_rows_for_scope(args.start_seq, args.end_seq)
+    if args.limit > 0:
+        files = files[: args.limit]
+    plan = [
+        (info, output_paths(output_root, info.seq))
+        for info in files
+    ]
+    ready_count = sum(selection_status(info, paths, args)[0] == "READY" for info, paths in plan)
+    if args.dry_run:
+        for info, paths in plan:
+            status, reason = selection_status(info, paths, args)
+            label = "DRY_RUN" if status == "READY" else status
+            print(f"{label} {info.seq:05d}: {info.path} {reason}", flush=True)
+        print(f"Files in scope: {len(plan)}; selected: {ready_count}; no files written.", flush=True)
+        return
+    if not ready_count:
+        print("No files selected; existing manifests and reports left unchanged.", flush=True)
+        return
+
     output_root.mkdir(parents=True, exist_ok=True)
     (output_root / "h5").mkdir(parents=True, exist_ok=True)
     (output_root / "laz").mkdir(parents=True, exist_ok=True)
@@ -555,32 +572,19 @@ def run(args: argparse.Namespace) -> None:
     candidate = stage6k.load_json(STAGE6I_BEST)
     calibration = pipe.load_channel_calibration(stage5.CALIB_COEFFS, "ch1")
     pos_time, pos, _ = stage5.load_pos()
-    files = processing_rows_for_scope(args.start_seq, args.end_seq)
-    if args.limit > 0:
-        files = files[: args.limit]
     stage6n_report = load_json(STAGE6N_REPORT)
     stage6m_report = load_json(STAGE6M_REPORT)
 
     rows: list[dict[str, Any]] = []
-    for index, info in enumerate(files, start=1):
-        paths = output_paths(output_root, info.seq)
+    for index, (info, paths) in enumerate(plan, start=1):
         if args.progress:
             print(f"[{index}/{len(files)}] Stage 7A seq {info.seq:05d}: {info.path.name}", flush=True)
-        if info.status != "OK" and not args.include_non_ok:
-            reason = info.reason or f"manifest status is {info.status}"
-            rows.append(row_from_skip(info, "SKIPPED_BAD_TIME", reason, paths))
+        status, reason = selection_status(info, paths, args)
+        if status != "READY":
+            rows.append(row_from_skip(info, status, reason, paths))
             if args.progress:
                 print(f"  skipped: {reason}", flush=True)
             continue
-        if not args.overwrite and any(path.exists() for path in paths.values()):
-            rows.append(row_from_skip(info, "SKIPPED_EXISTS", "one or more output files already exist; use --overwrite to regenerate", paths))
-            if args.progress:
-                print("  skipped: output exists", flush=True)
-            continue
-        if args.dry_run:
-            rows.append(row_from_skip(info, "DRY_RUN", "dry run only; no output written", paths))
-            continue
-
         try:
             l1 = stage6k.load_l1_full(info.path)
             points, stats = stage6k.build_full_points(
@@ -639,7 +643,6 @@ def run(args: argparse.Namespace) -> None:
     manifest_csv = output_root / "manifest" / "stage7a_ch1_ladm2_00050_00150_manifest.csv"
     manifest_json = output_root / "manifest" / "stage7a_ch1_ladm2_00050_00150_manifest.json"
     report_json_output = output_root / "reports" / "stage7a_ch1_ladm2_candidate_batch_report.json"
-    report_json_project = REPORT_DIR / "stage7a_ch1_ladm2_candidate_batch_report.json"
     write_csv(manifest_csv, rows, manifest_fields())
 
     processed = [row for row in rows if row["status"] == "PROCESSED"]
@@ -706,7 +709,6 @@ def run(args: argparse.Namespace) -> None:
     }
     write_json(manifest_json, payload)
     write_json(report_json_output, payload)
-    write_json(report_json_project, payload)
     write_report(payload, output_root)
     print(
         json.dumps(

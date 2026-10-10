@@ -3,25 +3,16 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import os
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
 
-ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_PROJECT_DATA_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3",
-    )
-)
-DEFAULT_OUTPUT_ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_STAGE_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3_2.0",
-    )
-)
+from project_paths import DATA_ROOT, STAGE_ROOT
+
+ROOT = DATA_ROOT
+DEFAULT_OUTPUT_ROOT = STAGE_ROOT
 REPORT_DIR = ROOT / "metadata" / "stage_reports"
 
 METHOD_REGISTRY = [
@@ -504,7 +495,6 @@ def run(args: argparse.Namespace) -> None:
     package_dir = output_root / "stage7d_teacher_package"
     package_dir.mkdir(parents=True, exist_ok=True)
     (output_root / "reports").mkdir(parents=True, exist_ok=True)
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
     paths = {
         "stage6i": REPORT_DIR / "stage6i_ch1_ladm2_scan_geometry_diagnostic_report.json",
@@ -532,9 +522,7 @@ def run(args: argparse.Namespace) -> None:
     readme_md = package_dir / "README.md"
     release_json = package_dir / "stage7d_release_decision.json"
     report_json_output = output_root / "reports" / "stage7d_ch1_ladm2_teacher_review_package_report.json"
-    report_json_project = REPORT_DIR / "stage7d_ch1_ladm2_teacher_review_package_report.json"
     report_md_output = output_root / "reports" / "stage7d_ch1_ladm2_teacher_review_package_report.md"
-    report_md_project = REPORT_DIR / "stage7d_ch1_ladm2_teacher_review_package_report.md"
 
     write_csv(display_manifest_csv, release_rows)
     write_csv(excluded_csv, excluded)
@@ -575,17 +563,13 @@ def run(args: argparse.Namespace) -> None:
             "release_decision_json": str(release_json),
             "report_json": str(report_json_output),
             "report_md": str(report_md_output),
-            "project_report_json": str(report_json_project),
-            "project_report_md": str(report_md_project),
         },
     }
     write_teacher_summary(teacher_md, payload, qc_rows, screenshot_rows)
     write_teacher_summary(report_md_output, payload, qc_rows, screenshot_rows)
-    write_teacher_summary(report_md_project, payload, qc_rows, screenshot_rows)
     write_readme(readme_md, payload)
     write_json(release_json, payload)
     write_json(report_json_output, payload)
-    write_json(report_json_project, payload)
     print(
         json.dumps(
             jsonable(

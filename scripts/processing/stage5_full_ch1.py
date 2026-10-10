@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import os
 import re
 import shutil
 import time
@@ -16,14 +15,10 @@ import numpy as np
 from pyproj import Transformer
 
 import ch1_pipeline as pipe
+from project_paths import DATA_ROOT
 
 
-ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_PROJECT_DATA_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3",
-    )
-)
+ROOT = DATA_ROOT
 L1_DIR = ROOT / "0510_f3" / "L1-TIME_ANGE_DIST_DATA"
 POS_SOURCE = ROOT / "0510_f3" / "0510f3_processed.mat"
 REFERENCE_L3 = ROOT / "0510_f3" / "L3_DATA" / "L2_cap_00111_20260510190957.h5"
@@ -78,7 +73,7 @@ def read_manifest(path: Path) -> list[FileInfo]:
     rows: list[FileInfo] = []
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         for row in csv.DictReader(f):
-            l1_path = ROOT / row["file"]
+            l1_path = ROOT / row["file"].replace("\\", "/")
             rows.append(
                 FileInfo(
                     seq=int(float(row["seq"])),

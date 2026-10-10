@@ -5,7 +5,6 @@ import csv
 import gc
 import json
 import math
-import os
 from pathlib import Path
 from typing import Any
 
@@ -14,19 +13,10 @@ import numpy as np
 from pyproj import CRS
 
 
-ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_PROJECT_DATA_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3",
-    )
-)
-DEFAULT_OUTPUT_ROOT = Path(
-    os.environ.get(
-        "AIRBORNE_LIDAR_STAGE_ROOT",
-        r"E:\yjind_work\Airborne_LiDAR_Data\proj_denoising_f3_2.0",
-    )
-)
-REPORT_DIR = ROOT / "metadata" / "stage_reports"
+from project_paths import DATA_ROOT, STAGE_ROOT
+
+ROOT = DATA_ROOT
+DEFAULT_OUTPUT_ROOT = STAGE_ROOT
 CRS_EPSG = 32651
 
 METHOD_REGISTRY = [
@@ -376,7 +366,9 @@ def write_laz(path: Path, points: np.ndarray, overwrite: bool) -> int:
     las.scan_angle_deg = points["scan_angle_deg"].astype(np.float32)
     las.point_index = points["point_index"].astype(np.uint32)
     las.pos_quality_flag = points["pos_quality_flag"].astype(np.uint16)
-    las.write(temp_path)
+    # Path-based writes infer compression from ".tmp"; a stream honors do_compress.
+    with temp_path.open("wb+") as stream:
+        las.write(stream, do_compress=True)
     replace_temp(temp_path, path, overwrite)
     return int(points.size)
 
@@ -587,7 +579,8 @@ def write_report(payload: dict[str, Any], output_root: Path) -> None:
 
 ## Scope
 
-- Input: Stage 7D display-candidate manifest, 95 Stage 7A H5 files.
+- Input manifest: `{payload['inputs']['stage7d_display_candidate_manifest']}`.
+- Input rows in this run: {len(payload['manifest_rows'])}.
 - Output root: `{output_root / 'stage8a_ladm2_light_denoised'}`
 - Original Stage 7A outputs are not modified.
 - This is light denoise, not final classification.
@@ -637,9 +630,6 @@ Open several denoised LAZ or sample TXT files in CloudCompare and compare with t
     report_md_output = output_root / "reports" / "stage8a_ch1_ladm2_light_denoise_batch_report.md"
     report_md_output.parent.mkdir(parents=True, exist_ok=True)
     report_md_output.write_text(content, encoding="utf-8-sig")
-    report_md_project = REPORT_DIR / "stage8a_ch1_ladm2_light_denoise_batch_report.md"
-    report_md_project.parent.mkdir(parents=True, exist_ok=True)
-    report_md_project.write_text(content, encoding="utf-8-sig")
 
 
 def run(args: argparse.Namespace) -> None:
@@ -647,7 +637,6 @@ def run(args: argparse.Namespace) -> None:
     for sub in ["h5", "laz", "txt_sample", "manifest", "reports"]:
         (base / sub).mkdir(parents=True, exist_ok=True)
     (args.output_root / "reports").mkdir(parents=True, exist_ok=True)
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
     manifest_path = args.input_manifest or args.output_root / "stage7d_teacher_package" / "stage7d_display_candidate_manifest.csv"
     input_rows = read_csv_rows(manifest_path)
@@ -674,7 +663,6 @@ def run(args: argparse.Namespace) -> None:
     aggregate, gate = gate_summary(rows, args)
     manifest_csv = base / "manifest" / "stage8a_ch1_ladm2_light_denoise_manifest.csv"
     report_json_output = args.output_root / "reports" / "stage8a_ch1_ladm2_light_denoise_batch_report.json"
-    report_json_project = REPORT_DIR / "stage8a_ch1_ladm2_light_denoise_batch_report.json"
     write_csv(manifest_csv, rows)
     payload = {
         "stage_name": "stage8a_ch1_ladm2_light_denoise_batch",
@@ -706,15 +694,12 @@ def run(args: argparse.Namespace) -> None:
             "manifest_csv": str(manifest_csv),
             "report_json": str(report_json_output),
             "report_md": str(args.output_root / "reports" / "stage8a_ch1_ladm2_light_denoise_batch_report.md"),
-            "project_report_json": str(report_json_project),
-            "project_report_md": str(REPORT_DIR / "stage8a_ch1_ladm2_light_denoise_batch_report.md"),
             "h5_dir": str(base / "h5"),
             "laz_dir": str(base / "laz"),
             "sample_txt_dir": str(base / "txt_sample"),
         },
     }
     write_json(report_json_output, payload)
-    write_json(report_json_project, payload)
     write_report(payload, args.output_root)
     print(
         json.dumps(

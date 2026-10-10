@@ -4,11 +4,48 @@ __pycache__/
 .venv/
 venv/
 
-# Generated outputs
-outputs/**/*.html
-outputs/**/*.ply
-outputs/**/*.las
-outputs/**/*.laz
+# External data and generated products (copy separately from Git)
+/data/
+/outputs/
+/0510_f3/
+/时间修复_L1/
+/metadata/stage_reports/*
+!/metadata/stage_reports/stage7d_teacher_presentation_l1_l2_l3_notes.md
+/metadata/*manifest*.csv
+*.h5
+*.hdf5
+*.mat
+*.pcd
+*.las
+*.laz
+*.ply
+*.pcap
+*.pcapng
+*.tmp
+*.partial
+
+# Visual Studio: keep source and project files, not local build state
+.vs/
+Debug/
+Release/
+x64/
+x86/
+ipch/
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.VC.opendb
+*.vcxproj.user
+*.obj
+*.pdb
+*.ilk
+*.ipch
+*.iobj
+*.ipdb
+*.idb
+*.tlog
+*.lastbuildstate
 
 # Large mission data
 0510_f3/L1-TIME_ANGE_DIST_DATA/
@@ -26,6 +63,9 @@ outputs/**/*.laz
 Thumbs.db
 .vscode/
 .idea/
+.env
+.env.*
+!*.example
 
 # Stage reports
 阶段汇报/
